@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>String Manipulation</title>
+
+		<meta name="description" content="Simple String manipulation problems.">
+		<meta name="author" content="Tyler Burnham">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../RevealJS/css/reveal.css">
+		<link rel="stylesheet" href="../RevealJS/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../RevealJS/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = '../RevealJS/text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				
+				<section>
+					<h1>String Manipulation</h1>
+					<h3>AKA. Why we use Python</h3>
+					<p>
+						<small>Created by Tyler Burnham</small>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>Royal Tweet</h2>
+						<blockquote cite="http://www.ccscse.org/programming_contest/problems/progcont_2014.pdf" style="font-size:25px">
+							&ldquo;On October 24th, 2014, Britain's Queen Elizabeth II dipped a toe into 21st-century communications when she posted her first tweet. Signing herself Elizabeth R., for regina or queen, she welcomed visitors to a new Information Age gallery focused on the evolution of modern communications at the Science Museum in London. The inaugural tweet (shown above) was posted to the official British monarchy Twitter feed, which has more than 700,000 followers.&rdquo; <br/><br/>
+							</blockquote>
+							<blockquote cite="http://www.ccscse.org/programming_contest/problems/progcont_2014.pdf" style="font-size:25px">
+							&ldquo;Your job is to write a program to scan a given number of tweets for how many mention the at symbol to the British Monarchy, @BritishMonarchy. The username following the @ symbol in Twitter is case insensitive.&rdquo;
+						</blockquote>
+					</section>
+					<section>
+						<h2>Sample Imput</h2>
+						<pre><code class="html" data-trim contenteditable>
+4
+So excited that we can now tweet The Queen @bRitishMonaRchY!! :-)
+@BritishMonarchy #Christmas is 6 weeks away!! #soClose
+Russ Rose would like to wish you all a Happy #Thanksgiving. #SNL
+@BritishMonarchy’s great grandson, heir to throne of @BritishMonarchy
+						</code></pre>
+						<h2>Sample Output</h2>
+						<pre><code class="html" data-trim contenteditable>
+Total Tweets Containing @BritishMonarchy = 3
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Java Solution</h2>
+						<pre><code class="java" data-trim contenteditable>
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class RoyalTweet{
+
+     public static void main(String []args){
+        Scanner input = new Scanner(System.in);
+        
+        int numberOfLines = Integer.parseInt(input.nextLine().toString());
+        
+        int count = 0;
+        for(int i = 0; i < numberOfLines; i++)
+        {
+            String line = input.nextLine();
+            StringTokenizer st = new StringTokenizer(line);
+            while (st.hasMoreElements()) 
+            {
+			    String word = st.nextElement().toString();
+			    if(word.toLowerCase().contains("@britishmonarchy"))
+			    {
+			        count ++;
+			    }    
+		    }
+        }
+        System.out.println("Total Tweets Containing @BritishMonarchy =" + count);
+     }
+}
+					</code></pre>
+					</section>
+					<section>
+						<h2>Python Solution</h2>
+						<pre><code class="python" data-trim contenteditable>
+count = 0
+for x in range(int(input())):
+    count += input().lower().count("@britishmonarchy")
+
+print("Total Tweets Containing @BritishMonarchy = " + str(count))
+						</code></pre>
+					</section>
+					<section>
+						<h2>1 Line Python Solution</h2>
+						<pre><code class="python" data-trim contenteditable>
+print("Total Tweets Containing @BritishMonarchy = " + str(sum(
+    [input().lower().count("@britishmonarchy")
+     for x in range(int(input()))]
+    )))
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>Royal Tweet</h2>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../RevealJS/lib/js/head.min.js"></script>
+		<script src="../RevealJS/js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../RevealJS/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../RevealJS/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../RevealJS/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../RevealJS/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../RevealJS/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../RevealJS/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
