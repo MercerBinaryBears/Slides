@@ -43,7 +43,7 @@
 				
 				<section>
 					<h1>String Manipulation</h1>
-					<h3>AKA. Why we use Python</h3>
+					<h3>AKA Why we use Python</h3>
 					<p>
 						<small>Created by Tyler Burnham</small>
 					</p>
@@ -126,7 +126,60 @@ print("Total Tweets Containing @BritishMonarchy = " + str(sum(
 					</section>
 				</section>
 				<section>
-					<h2>Royal Tweet</h2>
+					<section>
+						<h2>Useful Python Commands</h2>
+					</section>
+					<section>
+						<h2>Constants</h2>
+						<pre><code class="python" data-trim contenteditable>
+import string
+string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
+string.ascii_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+string.digits = "0123456789"
+string.hexdigits = "0123456789abcdefABCDEF"
+string.octdigits = "01234567"
+
+string.punctuation = '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
+string.printable
+string.whitespace 
+						</code></pre>
+					</section>
+					<section>
+						<h2>Change Case</h2>
+						<pre><code class="python" data-trim contenteditable>
+#Change Case
+"BINARY BEARS".lower() 		-> 'binary bears'
+"binary bears".upper() 		-> 'BINARY BEARS'
+"binary BEARS".swapcase()	-> 'BINARY bears'
+
+#Other Change Case
+"binary bears".capitalize()	-> 'Binary bears'
+"binary bears".title()		-> 'Binary Bears'
+						</code></pre>
+					</section>
+					<section>
+						<h2>Find and Count</h2>
+						<pre><code class="python" data-trim contenteditable>
+#Find
+"binary bears".find('bear') = 7
+"bear" in "binary bears" = True
+
+#Count
+"binary bears".count('bear') = 1
+
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>Conditionals</h2>
+						<pre><code class="python" data-trim contenteditable>
+
+						</code></pre>
+					</section>
+
+
 				</section>
 
 			</div>
