@@ -1,0 +1,32 @@
+Problem 5
+The Village Gong
+
+In a certain remote village, monks announce the passage of time by striking a gong every ten
+minutes throughout the day and night. The gong is struck at exactly midnight, and at every ten
+minute interval after that, at 12:10:00, 12:20:00, etc. Your job is to figure out how long it will be
+until the monks will next strike the gong.
+
+Input
+The first line of the input will be the number of test cases. On each subsequent line is a separate
+test case. An instance of this problem is a string of the form <h>:<m>:<s> that represents the
+current time in a 12-hour format, where h, m and s are integers and 1 = h = 12, 00 = m = 59, 00
+= s = 59. The abbreviations "a.m." and "p.m." will not be specified in the input. They are
+unnecessary.
+
+Output
+For each instance, your program is to determine the integer number of seconds until the next
+strike of the gong. If the current time happens to be the precise moment when the gong is being
+struck, then output 0.
+
+Sample Input
+4
+8:11:47
+12:05:00
+7:19:59
+4:50:00
+
+Output Corresponding to Sample Input
+493
+300
+1
+0

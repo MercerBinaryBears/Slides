@@ -157,13 +157,23 @@ string.whitespace
 #Other Change Case
 "binary bears".capitalize()	-> 'Binary bears'
 "binary bears".title()		-> 'Binary Bears'
+
+#Case Conditionals
+"binary bears".isupper()    -> False
+"binary bears".islower()    -> True
+"binary bears".istitle()    -> False
 						</code></pre>
 					</section>
 					<section>
 						<h2>Find and Count</h2>
 						<pre><code class="python" data-trim contenteditable>
 #Find
-"binary bears".find('bear') = 7
+"binary bears".find('a') = 3
+"binary bears".rfind('a') = 9 #Return the highest index
+"binary bears".index('bear') = 7 #Like find(), but raise ValueError when the substring is not found.
+"binary bears".rindex('a') = 9
+
+#In
 "bear" in "binary bears" = True
 
 #Count
@@ -175,7 +185,55 @@ string.whitespace
 					<section>
 						<h2>Conditionals</h2>
 						<pre><code class="python" data-trim contenteditable>
+str.isalpha()       
+str.isnumeric() 
+str.isdecimal() 
+str.isdigit()
+str.isalnum()
+str.isspace()    #" ","\t","\n","\r","\f"
+                        
+						</code></pre>
+                        <a href=https://docs.python.org/3.5/library/stdtypes.html#str.isalpha>String Python Docs<a></br>
+                        <a href=http://stackoverflow.com/questions/22789392/str-isdecimal-and-str-isdigit-difference-example>str.isnumeric() vs str.isdecimal() vs str.isdigit()</a>
+					</section>
+                    <section>
+						<h2>Split</h2>
+						<pre><code class="python" data-trim contenteditable>
+>>> "Red fish, Blue Fish, Green Fish".split(',')    
+['Red fish', ' Blue Fish', ' Green Fish']
 
+>>> "Red fish, Blue Fish, Green Fish".split(',', maxsplit=1)    
+['Red fish', ' Blue Fish, Green Fish']
+
+>>> "Line1\nLine2\nLine3\n".splitlines()
+['Line1', 'Line2', 'Line3']
+
+>>> "Line1\nLine2\nLine3\n".splitlines(keepends=True)
+['Line1\n', 'Line2\n', 'Line3\n']                        
+                        
+						</code></pre>
+					</section>
+                    <section>
+						<h2>Strippers</h2>
+						<pre><code class="python" data-trim contenteditable>
+"     B e a r   ".strip()  = 'B e a r'
+"     Bear   ".ltrip()     = 'Bear   '
+"     Bear   ".rstrip()    = '     Bear'            
+						</code></pre>
+					</section>
+                    <section>
+						<h2>Format</h2>
+						<pre><code class="python" data-trim contenteditable>
+>>> "1".zfill(2)
+'01'
+>>> "123".rjust(6)
+'   123'
+>>> "123".ljust(6)
+'123   '
+>>> "123".center(6)
+' 123  '                      
+>>> "{0:.1f}".format(123.15)
+'123.2'                        
 						</code></pre>
 					</section>
 

@@ -1,0 +1,35 @@
+Problem 2
+Good or Evil?
+
+You are trying to figure out whether a character is good or evil. Well, it’s easy to tell! You just
+have to count up the number of g’s and e’s in their name. If they have more g’s, they are good, if
+they have more e’s, they are bad. Think about it, the greatest hero of them all, Algorithm
+Crunching Man is good since he has two g’s and no e’s. What about Tux (the Linux Penguin)?
+Well, the name Tux has no g’s and no e’s so he must be neutral. Any name with the same
+number of g’s and e’s is deemed neutral. Be sure to ignore case in your solution (i.e., count
+uppercase and lowercase g’s and e’s the same).
+
+Input
+The first line of input contains a single integer n, (1 = n = 1000), which is the number of test
+cases that follow. Each test case consists of a single line of input containing a string. Each
+string is of length n, (1 = n = 80).
+
+Output
+For each test case, you should generate one line of output with the name followed by a single
+space, followed by is, a single space, and then followed by either GOOD, EVIL, or NEUTRAL
+based on the relation of g’s to e’s. Each result should appear on a separate line.
+
+Sample Input
+5
+Hades
+Glinda the Good Witch
+Simba
+Maleficent
+Cruella De Vil
+
+Output Corresponding to Sample Input
+Hades is EVIL
+Glinda the Good Witch is GOOD
+Simba is NEITHER
+Maleficent is EVIL
+Cruella De Vil is EVIL
