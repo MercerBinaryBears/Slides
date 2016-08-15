@@ -37,7 +37,65 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    Hey
+                <h1>Computational Geometry</h1>
+                <p>
+                    <small>Chip Bell</small>
+                </p>
+                </section>
+                <section>
+                    <section>
+                        <h2>Vectors</h2>
+                        <img src="ComputationalGeometry/vector.jpg" alt="Vector" width="50%"/>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Can represents a group of real numbers (not useful for us)</li>
+                            <li>Can represent a position in space (useful for us)</li>
+                            <li>Can represent something with magnitude and direction (useful for us)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>A Position in space (aka Cartesian coordinates)</h3>
+                        <p>
+                        \[
+                            (x, y)
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Something with Magnitude and direction (aka Polar coordinates)</h3>
+                        <p>
+                        \[
+                            (r, \theta)
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Converting from Cartesian to Polar</h3>
+                        <p>
+                        \[
+                        r = \sqrt{x^2 + y^2}
+                        \]
+                        </p>
+                        <p>
+                        \[
+                        \theta = \tan^{-1}{\frac{y}{x}}
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Converting from Polar to Cartesian</h3>
+                        <p>
+                        \[
+                        x = r\cos{\theta}
+                        \]
+                        </p>
+                        <p>
+                        \[
+                        y = r\sin{\theta}
+                        \]
+                        </p>
+                    </section>
                 </section>
             </div>
         </div>
@@ -60,7 +118,8 @@
 					{ src: '../RevealJS/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: '../RevealJS/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: '../RevealJS/plugin/zoom-js/zoom.js', async: true },
-					{ src: '../RevealJS/plugin/notes/notes.js', async: true }
+					{ src: '../RevealJS/plugin/notes/notes.js', async: true },
+					{ src: '../RevealJS/plugin/math/math.js', async: true }
 				]
 			});
 
