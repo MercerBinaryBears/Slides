@@ -266,6 +266,69 @@ public class Vector {
                         </code></pre>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Basic Applications</h2> 
+                    </section>
+                    <section>
+                        <h3>Length of Vector</h3>
+                        <p>
+                        \[
+                            || v || = \sqrt{v \cdot v }    
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Distance Between Vectors</h3>
+                        <p>
+                        It's the magnitude of the difference
+                        \[
+                            || w - v || = \sqrt{ (w - v) \cdot (w - v) }
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Angle Between Two Vectors</h3>
+                        <p>
+                        \[
+                        \theta = \cos^{-1} \frac{a \cdot b }{ |a| |b| }
+                        \]
+                        </p>
+                        <p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M10,90 l100,0" stroke="#3f3" stroke-width="1"/>
+
+                            <path d="M10,90 L70,30" stroke="#3f3" stroke-width="1" />
+
+                            <path d="M25,90 a 10 10 0 0 0 -8 -8" stroke="#33f" stroke-width="1" fill="none" />
+                            <text x="27" y="85" font-size="10" stroke="#33f">θ</text>
+                        </svg>
+                        </p>
+                        <p>
+                        <em><a href="http://mathworld.wolfram.com/InverseCosine.html">Be mindful of the range of $cos^-1$</a></em>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Area of Parallelogram</h3>
+                        <p>
+                        \[
+                            |v \times w|
+                        \]
+                        </p>
+                        <p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M0,99 L50,99 L80,40  L30,40 Z" fill="#888" />
+                            <path d="M0,99 L50,99" stroke="#3f3" stroke-width="2"/>
+                            <path d="M0,99 L30,40" stroke="#3f3" stroke-width="2" />
+                            <text x="2" y="60" stroke="white" font-size="10">v</text>
+                            <text x="60" y="100" stroke="white" font-size="10">w</text>
+                            <text x="30" y="70" stroke="white" font-size="10">|v &times; w|</text>
+                        </svg>
+                        </p>
+                    </section>
+                    <section>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
