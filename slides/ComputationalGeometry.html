@@ -169,6 +169,103 @@
                         </ul>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Implementations</h2> 
+                    </section>
+                    <section>
+                    <h3><a href="ComputationalGeometry/Vector.py">Python</a></h3>
+                        <pre><code class="python" data-trim>
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def add(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def negate(self):
+        return Vector(-self.x, -self.y)
+
+    def subtract(self, other):
+        return self.add(other.negate())
+
+    def dot(self, other):
+        return self.x * other.x + self.y * other.y
+
+    def magnitude(self):
+        return (self.dot(self)) ** 0.5
+
+    def cross(self, other):
+        return self.x * other.y - self.y * other.x
+
+    def __repr__(self):
+        return "{0},{1}".format(self.x, self.y)
+
+v = Vector(1, 0)
+w = Vector(0, 1)
+
+print(v.dot(w))
+print(v.cross(w))
+print(v.add(w))
+print(v.negate())
+print(v.add(w).magnitude())
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3><a href="ComputationalGeometry/Vector.java">Java</a></h3>
+                        <pre><code class="java" data-trim>
+public class Vector {
+    protected double x;
+    protected double y;
+
+    public Vector(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Vector add(Vector other) {
+        return new Vector(this.x + other.x, this.y + other.y);
+    }
+
+    public Vector negate() {
+        return new Vector(-this.x, -this.y);
+    }
+
+    public Vector subtract(Vector other) {
+        return this.add(other.negate());
+    }
+
+    public double dot(Vector other) {
+        return this.x * other.x + this.y * other.y;
+    }
+
+    public double magnitude() {
+        return Math.sqrt(this.dot(this));
+    }
+
+    public double cross(Vector other) {
+        return this.x * other.y - this.y * other.x;
+    }
+
+    public String toString() {
+        return "" + this.x + "," + this.y;
+    }
+
+    public static void main(String[] args) {
+        Vector v = new Vector(1, 0);
+        Vector w = new Vector(0, 1);
+
+        System.out.println(v.dot(w));
+        System.out.println(v.cross(w));
+        System.out.println(v.add(w));
+        System.out.println(v.negate());
+        System.out.println(v.add(w).magnitude());
+    }
+}
+                        </code></pre>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
