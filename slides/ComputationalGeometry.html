@@ -348,6 +348,39 @@ public class Vector {
                         </p>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Example Problems</h3>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/5/pdf">Welding</a></h3>
+                        <ul>
+                            <li>Premise is to count number of ways to place arc-shaped pieces of metal</li>
+                            <li>Being able to move along an arc requires lots of rotation vectors!</li>
+                            <li>Solution <a href="ComputationalGeometry/arc.py">here</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Robots</h3>
+                        <ul>
+                            <li>You've got a Martian robot with two 1-foot radius wheels</li>
+                            <li>You're given a series of rotation commands for each wheel</li>
+                            <li>Each rotation command has a speed and duration associated with it</li>
+                            <li>Calculate the location of the robot after the commands are completed</li>
+                            <li>Requires you to calculate the turn radius at each moment and do similar arc math as before</li>
+                            <li>Solution <a href="ComputationalGeometry/robot.py">here</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/73/pdf">Convex Hull</a></h3>
+                        <ul>
+                            <li>Requires you to calculate the points contained in the convex hull of a set</li>
+                            <li>The convex hull is the smallest convex polygon that contains a set of points (rubber band around nails)</li>
+                            <li>Basic solution is to calculate the convex hull, and then keep only points not in the convex hull</li>
+                            <li>Problem outlines an algorithm, but the <a href="http://www.math.ucsd.edu/~ronspubs/72_10_convex_hull.pdf">Graham Scan</a> is easier to write and understand in a competition</li>
+                        </ul>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
