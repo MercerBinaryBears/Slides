@@ -350,6 +350,69 @@ public class Vector {
                 </section>
                 <section>
                     <section>
+                        <h2>More Complex Applications</h2>
+                    </section>
+                    <section>
+                        <h3>Area of a Polygon</h3>
+                        <p>We can extend the area notion with the cross product to get the area of a polygon</p>
+                        <p>
+                            Given a polygon with $n$ points $(x_0, y_0), (x_1, y_1), ..., (x_{n-1}, y_{n-1})$,
+                            we can use the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace formula</a> to calculate area:
+                            \[
+                            A = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1}
+                            \]
+                        </p>
+                        <ul>
+                            <li>Note that $p_i = (x_i, y_i)$ and $p_n = p_0$</li>
+                            <li>This value can be negative, so take the absolute value</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Convex Hull</h3>
+                        <p>Finds the smallest <a href="https://en.wikipedia.org/wiki/Convex_hull">convex polygon</a> that contains a set of points</p>
+                        <p>
+                            <svg viewBox="0 0 100 100" height="300" width="300">
+                                <path fill="none" stroke="green" stroke-width="1" d="M20,10 L70,30 L60,70 L15,85 Z" />
+                                <circle fill="white" r="2" cx="70" cy="30" />
+                                <circle fill="white" r="2" cx="40" cy="50" />
+                                <circle fill="white" r="2" cx="60" cy="70" />
+                                <circle fill="white" r="2" cx="45" cy="45" />
+                                <circle fill="white" r="2" cx="20" cy="10" />
+                                <circle fill="white" r="2" cx="15" cy="85" />
+                            </svg>
+                        </p>
+                        <ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm#Pseudocode">Jarvis March</a></ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Graham_scan">Graham Scan</a></ul>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Line Segment Intersection</h3>
+                        <p>
+                            Given two line segments:
+                            \[
+                                L_1(t) = p_1 + d_1t, 0 \le t \le 1
+                            \]
+                            and
+                            \[
+                                L_2(t) = p_2 + d_2t, 0 \le t \le 1
+                            \]
+                        </p>
+                        <p>
+                            We can find where the intersect by clever usage of the dot product and cross product. Figure it out yourself!
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Many, Many More</h3>
+                        <ul>
+                            <li><a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulation</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Boolean_operations_on_polygons">Polygon Set Math</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Point_in_polygon">Point in Polygon</a> (cross products)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
                         <h2>Example Problems</h3>
                     </section>
                     <section>
