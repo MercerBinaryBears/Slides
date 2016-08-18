@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computational Geometry</title>
+
+		<meta name="description" content="Computer Science + Geometry.">
+		<meta name="author" content="Chip Bell">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../RevealJS/css/reveal.css">
+		<link rel="stylesheet" href="../RevealJS/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../RevealJS/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = '../RevealJS/text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                <h1>Computational Geometry</h1>
+                <p>
+                    <small>Chip Bell</small>
+                </p>
+                </section>
+                <section>
+                    <section>
+                        <h2>Vectors</h2>
+                        <img src="ComputationalGeometry/vector.jpg" alt="Vector" width="50%"/>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Can represents a group of real numbers (not useful for us)</li>
+                            <li>Can represent a position in space (useful for us)</li>
+                            <li>Can represent something with magnitude and direction (useful for us)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>A Position in space (aka Cartesian coordinates)</h3>
+                        <p>
+                        \[
+                            (x, y)
+                        \]
+                        </p>
+                        <p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M0,90 l100,0" stroke="white" stroke-width="1"/>
+                            <path d="M10,0 l0,100" stroke="white" stroke-width="1"/>
+
+                            <path d="M70,90 L70,30" stroke="#3f3" stroke-width="1" />
+                            <text x="75" y="60" font-size="10" stroke="#3f3" >y</text>
+
+                            <path d="M10,90 L70,90" stroke="#33f" stroke-width="1" />
+                            <text x="40" y="98" font-size="10" stroke="#33f">x</text>
+
+                            <circle fill="white" r="2" cx="70" cy="30" />
+                        </svg>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Something with Magnitude and direction (aka Polar coordinates)</h3>
+                        <p>
+                        \[
+                            (r, \theta)
+                        \]
+                        </p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M0,90 l100,0" stroke="white" stroke-width="1"/>
+                            <path d="M10,0 l0,100" stroke="white" stroke-width="1"/>
+
+                            <path d="M10,90 L70,30" stroke="#3f3" stroke-width="1" />
+                            <text x="30" y="60" font-size="10" stroke="#3f3" >r</text>
+
+                            <path d="M25,90 a 10 10 0 0 0 -8 -8" stroke="#33f" stroke-width="1" fill="none" />
+                            <text x="27" y="85" font-size="10" stroke="#33f">θ</text>
+
+                            <circle fill="white" r="2" cx="70" cy="30" />
+                        </svg>
+                    </section>
+                    <section>
+                        <h3>Converting from Cartesian to Polar</h3>
+                        <p>
+                        \[
+                        r = \sqrt{x^2 + y^2}
+                        \]
+                        </p>
+                        <p>
+                        \[
+                        \theta = \tan^{-1}{\frac{y}{x}}
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Converting from Polar to Cartesian</h3>
+                        <p>
+                        \[
+                        x = r\cos{\theta}
+                        \]
+                        </p>
+                        <p>
+                        \[
+                        y = r\sin{\theta}
+                        \]
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Vector Operations</h2>
+                    </section>
+                    <section>
+                        <h3>Addition</h3>
+                        <p>
+                        \[
+                            (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2)
+                        \]
+                        </p>
+                        <ul>
+                            <li>Basically add up corresponding elements)</li>
+                            <li>Essentially like saying "Move $x_1$ left, $y_1$ north. From there, move $x_2$ left, then $y_2$ north"</li>
+                            <li>Subtraction works the same way</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Dot Product</h3>
+                        <p>
+                        \[
+                            (x_1, y_1) \cdot (x_2, y_2) = x_1 x_2 + y_1 y_2
+                        \]
+                        </p>
+                        <ul>
+                            <li>Measures how much "vectors have in common"</li>
+                            <li>Can provide length of a vector: $\sqrt{v \cdot v}$ is the length of the vector $v$</li>
+                            <li>Can provide angle between two vectors (later)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Cross Product</h3>
+                        <p>
+                        \[
+                            (x_1, y_1) \times (x_2, y_2) = x_1y_2 - y_1x_2
+                        \]
+                        </p>
+                        <ul>
+                            <li>Can provided angle between vectors</li>
+                            <li>Can be used to provide angle</li>
+                            <li>Can be used for calculating "turn direction"</li>
+                            <li>Pay attention to the subtraction!</li>
+                            <li>Pay attention to the combination of $x$'s and $y$'s</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Rotation</h3>
+                        <p>
+                        Given an angle $\theta$
+                        \[
+                        R(v, \theta) = (v_x\cos{\theta} + v_y\sin{\theta}, v_x\sin{\theta} + v_y\cos{\theta})
+                        \]
+                        </p>
+                        <ul>
+                            <li>Rotates a vector around the origin. To rotate around a vector $w$:
+                            \[
+                            R_w(v, \theta) = w + R(v - w, \theta)
+                            \]
+                            </li>
+                            <li>Pay attention to the comma!</li>
+                            <li>Pay attention to the signs!</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Implementations</h2> 
+                    </section>
+                    <section>
+                    <h3><a href="ComputationalGeometry/Vector.py">Python</a></h3>
+                        <pre><code class="python" data-trim>
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def add(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def negate(self):
+        return Vector(-self.x, -self.y)
+
+    def subtract(self, other):
+        return self.add(other.negate())
+
+    def dot(self, other):
+        return self.x * other.x + self.y * other.y
+
+    def magnitude(self):
+        return (self.dot(self)) ** 0.5
+
+    def cross(self, other):
+        return self.x * other.y - self.y * other.x
+
+    def __repr__(self):
+        return "{0},{1}".format(self.x, self.y)
+
+v = Vector(1, 0)
+w = Vector(0, 1)
+
+print(v.dot(w))
+print(v.cross(w))
+print(v.add(w))
+print(v.negate())
+print(v.add(w).magnitude())
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3><a href="ComputationalGeometry/Vector.java">Java</a></h3>
+                        <pre><code class="java" data-trim>
+public class Vector {
+    protected double x;
+    protected double y;
+
+    public Vector(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Vector add(Vector other) {
+        return new Vector(this.x + other.x, this.y + other.y);
+    }
+
+    public Vector negate() {
+        return new Vector(-this.x, -this.y);
+    }
+
+    public Vector subtract(Vector other) {
+        return this.add(other.negate());
+    }
+
+    public double dot(Vector other) {
+        return this.x * other.x + this.y * other.y;
+    }
+
+    public double magnitude() {
+        return Math.sqrt(this.dot(this));
+    }
+
+    public double cross(Vector other) {
+        return this.x * other.y - this.y * other.x;
+    }
+
+    public String toString() {
+        return "" + this.x + "," + this.y;
+    }
+
+    public static void main(String[] args) {
+        Vector v = new Vector(1, 0);
+        Vector w = new Vector(0, 1);
+
+        System.out.println(v.dot(w));
+        System.out.println(v.cross(w));
+        System.out.println(v.add(w));
+        System.out.println(v.negate());
+        System.out.println(v.add(w).magnitude());
+    }
+}
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Basic Applications</h2> 
+                    </section>
+                    <section>
+                        <h3>Length of Vector</h3>
+                        <p>
+                        \[
+                            || v || = \sqrt{v \cdot v }    
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Distance Between Vectors</h3>
+                        <p>
+                        It's the magnitude of the difference
+                        \[
+                            || w - v || = \sqrt{ (w - v) \cdot (w - v) }
+                        \]
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Angle Between Two Vectors</h3>
+                        <p>
+                        \[
+                        \theta = \cos^{-1} \frac{a \cdot b }{ |a| |b| }
+                        \]
+                        </p>
+                        <p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M10,90 l100,0" stroke="#3f3" stroke-width="1"/>
+
+                            <path d="M10,90 L70,30" stroke="#3f3" stroke-width="1" />
+
+                            <path d="M25,90 a 10 10 0 0 0 -8 -8" stroke="#33f" stroke-width="1" fill="none" />
+                            <text x="27" y="85" font-size="10" stroke="#33f">θ</text>
+                        </svg>
+                        </p>
+                        <p>
+                        <em><a href="http://mathworld.wolfram.com/InverseCosine.html">Be mindful of the range of $cos^-1$</a></em>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Area of Parallelogram</h3>
+                        <p>
+                        \[
+                            |v \times w|
+                        \]
+                        </p>
+                        <p>
+                        <svg viewBox="0 0 100 100" height="300" width="300">
+                            <path d="M0,99 L50,99 L80,40  L30,40 Z" fill="#888" />
+                            <path d="M0,99 L50,99" stroke="#3f3" stroke-width="2"/>
+                            <path d="M0,99 L30,40" stroke="#3f3" stroke-width="2" />
+                            <text x="2" y="60" stroke="white" font-size="10">v</text>
+                            <text x="60" y="100" stroke="white" font-size="10">w</text>
+                            <text x="30" y="70" stroke="white" font-size="10">|v &times; w|</text>
+                        </svg>
+                        </p>
+                        <p>
+                            Note that you can divide in two to get the area of a triangle!
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>More Complex Applications</h2>
+                    </section>
+                    <section>
+                        <h3>Area of a Polygon</h3>
+                        <p>We can extend the area notion with the cross product to get the area of a polygon</p>
+                        <p>
+                            Given a polygon with $n$ points $(x_0, y_0), (x_1, y_1), ..., (x_{n-1}, y_{n-1})$,
+                            we can use the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace formula</a> to calculate area:
+                            \[
+                            A = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1}
+                            \]
+                        </p>
+                        <ul>
+                            <li>Note that $p_i = (x_i, y_i)$ and $p_n = p_0$</li>
+                            <li>This value can be negative, so take the absolute value</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Convex Hull</h3>
+                        <p>Finds the smallest <a href="https://en.wikipedia.org/wiki/Convex_hull">convex polygon</a> that contains a set of points</p>
+                        <p>
+                            <svg viewBox="0 0 100 100" height="300" width="300">
+                                <path fill="none" stroke="green" stroke-width="1" d="M20,10 L70,30 L60,70 L15,85 Z" />
+                                <circle fill="white" r="2" cx="70" cy="30" />
+                                <circle fill="white" r="2" cx="40" cy="50" />
+                                <circle fill="white" r="2" cx="60" cy="70" />
+                                <circle fill="white" r="2" cx="45" cy="45" />
+                                <circle fill="white" r="2" cx="20" cy="10" />
+                                <circle fill="white" r="2" cx="15" cy="85" />
+                            </svg>
+                        </p>
+                        <ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm#Pseudocode">Jarvis March</a></ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Graham_scan">Graham Scan</a></ul>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Line Segment Intersection</h3>
+                        <p>
+                            Given two line segments:
+                            \[
+                                L_1(t) = p_1 + d_1t, 0 \le t \le 1
+                            \]
+                            and
+                            \[
+                                L_2(t) = p_2 + d_2t, 0 \le t \le 1
+                            \]
+                        </p>
+                        <p>
+                            We can find where the intersect by clever usage of the dot product and cross product. Figure it out yourself!
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Many, Many More</h3>
+                        <ul>
+                            <li><a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulation</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Boolean_operations_on_polygons">Polygon Set Math</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Point_in_polygon">Point in Polygon</a> (cross products)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Example Problems</h3>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/5/pdf">Welding</a></h3>
+                        <ul>
+                            <li>Premise is to count number of ways to place arc-shaped pieces of metal</li>
+                            <li>Being able to move along an arc requires lots of rotation vectors!</li>
+                            <li>Solution <a href="ComputationalGeometry/arc.py">here</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Robots</h3>
+                        <ul>
+                            <li>You've got a Martian robot with two 1-foot radius wheels</li>
+                            <li>You're given a series of rotation commands for each wheel</li>
+                            <li>Each rotation command has a speed and duration associated with it</li>
+                            <li>Calculate the location of the robot after the commands are completed</li>
+                            <li>Requires you to calculate the turn radius at each moment and do similar arc math as before</li>
+                            <li>Solution <a href="ComputationalGeometry/robot.py">here</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/73/pdf">Convex Hull</a></h3>
+                        <ul>
+                            <li>Pretty much self-explanatory: Implement Jarvis March...</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/157/pdf">Star Simulations</a></h3>
+                        <ul>
+                            <li>Given a series of points, how many are less than $k$ units away from each other?</li>
+                            <li>Classic spatial indexing problem</li>
+                            <li>Solution <a href="ComputationalGeometry/stars_vanb.java">here</a>, using simple but clever spatial indexing</li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+		<script src="../RevealJS/lib/js/head.min.js"></script>
+		<script src="../RevealJS/js/reveal.js"></script>
+        <script src="./reveal-init.js"></script>
+    </body>
+</html>
