@@ -36,7 +36,40 @@
 	<body>
         <div class="reveal">
             <div class="slides">
-                <section>Yo</section>
+                <section>
+                    <h1>Graph Theory</h1>
+                </section>
+                <section>
+                    <section>
+                        <h2>Preliminaries</h2>
+                    </section>
+                    <section>
+                        <h3>What is a graph?</h3>
+                        <ul>
+                            <li>A set of vertices $V$, connected by a series of edges $E$</li>
+                            <li>Sometimes edges are "one-way", and we call such a graph <em>directed</em></li>
+                            <li>Sometimes edges have an associated weight, and we call those graphs <em>weighted</em></li>
+                        </ul>
+                        <svg viewBox="0 0 100 100" width="300" height="300">
+                            <path stroke-width="1" stroke="white" d="M10,10 L90,90" />
+                            <path stroke-width="1" stroke="white" d="M10,10 L10,90" />
+                            <path stroke-width="1" stroke="white" d="M10,90 L90,90" />
+                            <path stroke-width="1" stroke="white" d="M10,10 L90,10" />
+
+                            <circle r="5" cx="10" cy="10" stroke="white" fill="black" />
+                            <text x="10" y="10" font-size="3" stroke="white" >1</text>
+                            
+                            <circle r="5" cx="90" cy="90" stroke="white" fill="black" />
+                            <text x="90" y="90" font-size="3" stroke="white" >2</text>
+                            
+                            <circle r="5" cx="90" cy="10" stroke="white" fill="black" />
+                            <text x="90" y="10" font-size="3" stroke="white" >3</text>
+                            
+                            <circle r="5" cx="10" cy="90" stroke="white" fill="black" />
+                            <text x="10" y="90" font-size="3" stroke="white" >4</text>
+                        </svg>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
