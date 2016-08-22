@@ -42,7 +42,7 @@
                 stroke-width: 1px;
             }
             text {
-                font-size: 4px;
+                font-size: 6px;
                 stroke-width: 0.5;
                 stroke: white;
             }
@@ -67,22 +67,31 @@
                             <li>Sometimes edges have an associated weight, and we call those graphs <em>weighted</em></li>
                         </ul>
                         <svg viewBox="0 0 100 100" width="300" height="300">
+                            <!-- edges -->
                             <path d="M10,10 L90,90" />
-                            <path d="M10,10 L10,90" />
-                            <path d="M10,90 L90,90" />
-                            <path d="M10,10 L90,10" />
+                            <text x="53" y="47">4</text>
 
+                            <path d="M10,10 L10,90" />
+                            <text x="13" y="50">5</text>
+
+                            <path d="M10,90 L90,90" />
+                            <text x="50" y="7">5</text>
+
+                            <path d="M10,10 L90,10" />
+                            <text x="50" y="87">5</text>
+
+                            <!-- Vertices -->
                             <circle r="5" cx="10" cy="10"/>
-                            <text x="10" y="10">1</text>
+                            <text x="8.5" y="11.5">A</text>
                             
                             <circle r="5" cx="90" cy="90"/>
-                            <text x="90" y="90">2</text>
+                            <text x="88.5" y="91.5">B</text>
                             
                             <circle r="5" cx="90" cy="10"/>
-                            <text x="90" y="10">3</text>
+                            <text x="88.5" y="11.5">C</text>
                             
                             <circle r="5" cx="10" cy="90"/>
-                            <text x="10" y="90">4</text>
+                            <text x="8.5" y="91.5">D</text>
                         </svg>
                     </section>
                 </section>
