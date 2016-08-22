@@ -31,6 +31,22 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+        <style>
+            circle {
+                stroke: white;
+                fill: black;
+            }
+            path {
+                stroke: white;
+                stroke-width: 1px;
+            }
+            text {
+                font-size: 4px;
+                stroke-width: 0.5;
+                stroke: white;
+            }
+        </style>
 	</head>
 
 	<body>
@@ -51,22 +67,22 @@
                             <li>Sometimes edges have an associated weight, and we call those graphs <em>weighted</em></li>
                         </ul>
                         <svg viewBox="0 0 100 100" width="300" height="300">
-                            <path stroke-width="1" stroke="white" d="M10,10 L90,90" />
-                            <path stroke-width="1" stroke="white" d="M10,10 L10,90" />
-                            <path stroke-width="1" stroke="white" d="M10,90 L90,90" />
-                            <path stroke-width="1" stroke="white" d="M10,10 L90,10" />
+                            <path d="M10,10 L90,90" />
+                            <path d="M10,10 L10,90" />
+                            <path d="M10,90 L90,90" />
+                            <path d="M10,10 L90,10" />
 
-                            <circle r="5" cx="10" cy="10" stroke="white" fill="black" />
-                            <text x="10" y="10" font-size="3" stroke="white" >1</text>
+                            <circle r="5" cx="10" cy="10"/>
+                            <text x="10" y="10">1</text>
                             
-                            <circle r="5" cx="90" cy="90" stroke="white" fill="black" />
-                            <text x="90" y="90" font-size="3" stroke="white" >2</text>
+                            <circle r="5" cx="90" cy="90"/>
+                            <text x="90" y="90">2</text>
                             
-                            <circle r="5" cx="90" cy="10" stroke="white" fill="black" />
-                            <text x="90" y="10" font-size="3" stroke="white" >3</text>
+                            <circle r="5" cx="90" cy="10"/>
+                            <text x="90" y="10">3</text>
                             
-                            <circle r="5" cx="10" cy="90" stroke="white" fill="black" />
-                            <text x="10" y="90" font-size="3" stroke="white" >4</text>
+                            <circle r="5" cx="10" cy="90"/>
+                            <text x="10" y="90">4</text>
                         </svg>
                     </section>
                 </section>
