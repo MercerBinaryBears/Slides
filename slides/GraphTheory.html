@@ -104,6 +104,61 @@
                         </ul>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Implementation</h2>
+                    </section>
+                    <section>
+                        <h3>Adjacency List Implementations</h3>
+                        <ul>
+                            <li>Set of lists for each vertex</li>
+                            <li>Each list contains all vertices connected to the vertex associated with that list</li>
+                            <li>
+                            Using math: $G = \{ L_A, L_B, ... \}$, where $A, B, ...$ are the nodes of the graph, and
+                            $L_A = \{ B, D, E, ... \}$ is a list of vertices that $A$ is connected to.
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Implementation (using hash tables)</h3>
+                        <pre><code class="python" data-trim="true">
+class Graph:
+    def __init__(self):
+        self.adjacency = {}
+
+    def connect(self, vertex1, vertex2, weight=None):
+        if vertex1 not in self.adjacency:
+            self.adjacency[vertex1] = {}
+
+        self.adjacency[vertex1][vertex2] = weight
+
+    def is_vertex(self, vertex):
+        return vertex in self.adjacency
+
+    def are_connected(self, vertex1, vertex2):
+        return self.is_vertex(vertex1) and vertex2 in self.adjacency[vertex1]
+
+    def weight(self, vertex1, vertex2):
+        return self.adjacency[vertex1][vertex2]
+
+    def neighbors(self, vertex1):
+        return self.adjacency[vertex1].keys()
+
+# Test Code
+G = Graph()
+
+G.connect('A', 'B')
+G.connect('A', 'C')
+G.connect('B', 'C')
+G.connect('C', 'D')
+
+print(G.are_connected('A', 'B')) # True
+print(G.are_connected('B', 'A')) # False, because the graph is directed!
+print(G.are_connected('A', 'C')) # False, because there is no direct connection
+print(G.neighbors('A')) # ['C', 'B']
+                        </code></pre>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
