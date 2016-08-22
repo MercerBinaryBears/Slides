@@ -14,6 +14,7 @@ Reveal.initialize({
     { src: '../RevealJS/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
     { src: '../RevealJS/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
     { src: '../RevealJS/plugin/zoom-js/zoom.js', async: true },
-    { src: '../RevealJS/plugin/notes/notes.js', async: true }
+    { src: '../RevealJS/plugin/notes/notes.js', async: true },
+    { src: '../RevealJS/plugin/math/math.js', async: true }
   ]
 });
