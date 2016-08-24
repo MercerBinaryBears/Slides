@@ -129,21 +129,19 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					<section>
 						<h2>Useful Python Commands</h2>
 					</section>
-					<section>
-						<h2>Constants</h2>
+                    <section>
+						<h2>Indexing</h2>
 						<pre><code class="python" data-trim contenteditable>
-import string
-string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
-string.ascii_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-string.digits = "0123456789"
-string.hexdigits = "0123456789abcdefABCDEF"
-string.octdigits = "01234567"
-
-string.punctuation = '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
-string.printable
-string.whitespace 
+>>> "Binary Bears"[:3]
+'Bin'
+>>> "Binary Bears"[3:]
+'ary Bears'
+>>> "Binary Bears"[3:4]
+'a'
+>>> "Binary Bears"[::2]
+'Bnr er'
+>>> "Binary Bears"[::-1]
+'sraeB yraniB'
 						</code></pre>
 					</section>
 					<section>
@@ -234,6 +232,23 @@ str.isspace()    #" ","\t","\n","\r","\f"
 ' 123  '                      
 >>> "{0:.1f}".format(123.15)
 '123.2'                        
+						</code></pre>
+					</section>
+					<section>
+						<h2>Constants</h2>
+						<pre><code class="python" data-trim contenteditable>
+import string
+string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
+string.ascii_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+string.digits = "0123456789"
+string.hexdigits = "0123456789abcdefABCDEF"
+string.octdigits = "01234567"
+
+string.punctuation = '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
+string.printable
+string.whitespace 
 						</code></pre>
 					</section>
 
