@@ -110,17 +110,17 @@ public class RoyalTweet{
 						<pre><code class="python" data-trim contenteditable>
 count = 0
 for x in range(int(input())):
-    count += input().lower().count("@britishmonarchy")
-
+    if input().lower().count("@britishmonarchy"):
+        count += 1
 print("Total Tweets Containing @BritishMonarchy = " + str(count))
 						</code></pre>
 					</section>
 					<section>
 						<h2>1 Line Python Solution</h2>
 						<pre><code class="python" data-trim contenteditable>
-print("Total Tweets Containing @BritishMonarchy = " + str(sum(
-    [input().lower().count("@britishmonarchy")
-     for x in range(int(input()))]
+print("Total Tweets Containing @BritishMonarchy = " + str(
+    sum([1 if input().lower().count("@britishmonarchy") else 0
+    for x in range(int(input()))]
     )))
 						</code></pre>
 					</section>
