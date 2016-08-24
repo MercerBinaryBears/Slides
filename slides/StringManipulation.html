@@ -68,14 +68,14 @@ Russ Rose would like to wish you all a Happy #Thanksgiving. #SNL
 @BritishMonarchy’s great grandson, heir to throne of @BritishMonarchy
 						</code></pre>
 						<h2>Sample Output</h2>
-						<pre><code class="html" data-trim contenteditable>
+						<pre><code class="html" data-trim>
 Total Tweets Containing @BritishMonarchy = 3
 						</code></pre>
 					</section>
 
 					<section>
 						<h2>Java Solution</h2>
-						<pre><code class="java" data-trim contenteditable>
+						<pre><code class="java" data-trim>
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -107,7 +107,7 @@ public class RoyalTweet{
 					</section>
 					<section>
 						<h2>Python Solution</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 count = 0
 for x in range(int(input())):
     if input().lower().count("@britishmonarchy"):
@@ -117,7 +117,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(count))
 					</section>
 					<section>
 						<h2>1 Line Python Solution</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 print("Total Tweets Containing @BritishMonarchy = " + str(
     sum([1 if input().lower().count("@britishmonarchy") else 0
     for x in range(int(input()))]
@@ -131,7 +131,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					</section>
                     <section>
 						<h2>Indexing</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> "Binary Bears"[:3]
 'Bin'
 >>> "Binary Bears"[3:]
@@ -146,7 +146,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					</section>
                     <section>
 						<h2>List Comprehensions</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> l = [1, 2, 3, 4]
 >>> [num+1 for num in l]
 [2, 3, 4, 5]
@@ -156,7 +156,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					</section>
 					<section>
 						<h2>Change Case</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 #Change Case
 "BINARY BEARS".lower() 		-> 'binary bears'
 "binary bears".upper() 		-> 'BINARY BEARS'
@@ -174,7 +174,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					</section>
 					<section>
 						<h2>Find and Count</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 #Find
 "binary bears".find('a') = 3
 "binary bears".rfind('a') = 9 #Return the highest index
@@ -192,7 +192,7 @@ print("Total Tweets Containing @BritishMonarchy = " + str(
 					</section>
 					<section>
 						<h2>Conditionals</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 str.isalpha()       
 str.isnumeric() 
 str.isdecimal() 
@@ -206,7 +206,7 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
                     <section>
 						<h2>Split</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> "Red fish, Blue Fish, Green Fish".split(',')    
 ['Red fish', ' Blue Fish', ' Green Fish']
 
@@ -223,7 +223,7 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
                     <section>
 						<h2>Trimming Strings</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 "     B e a r   ".strip()  = 'B e a r'
 "     Bear   ".lstrip()     = 'Bear   '
 "     Bear   ".rstrip()    = '     Bear'            
@@ -231,7 +231,7 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
                     <section>
 						<h2>Format</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> "1".zfill(2)
 '01'
 >>> "123".rjust(6)
@@ -246,7 +246,7 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
 					<section>
 						<h2>Constants</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 import string
 string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
