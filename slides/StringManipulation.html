@@ -48,6 +48,17 @@
 						<small>Created by Tyler Burnham</small>
 					</p>
 				</section>
+                <section>
+                    <h2>What is String Manipulation?</h2>
+                    <p> Are problems that deal with parsing strings. They can be:
+                    </p>
+                    <ul>
+                        <li>Counting Words</li>
+                        <li>Replacing Strings</li>
+                        <li>Parsing for Information</li>
+                    </ul>
+
+				</section>
 				<section>
 					<section>
 						<h2>Royal Tweet</h2>
@@ -59,7 +70,7 @@
 						</blockquote>
 					</section>
 					<section>
-						<h2>Sample Imput</h2>
+						<h2>Sample Input</h2>
 						<pre><code class="html" data-trim contenteditable>
 4
 So excited that we can now tweet The Queen @bRitishMonaRchY!! :-)
@@ -68,24 +79,24 @@ Russ Rose would like to wish you all a Happy #Thanksgiving. #SNL
 @BritishMonarchy’s great grandson, heir to throne of @BritishMonarchy
 						</code></pre>
 						<h2>Sample Output</h2>
-						<pre><code class="html" data-trim contenteditable>
+						<pre><code class="html" data-trim>
 Total Tweets Containing @BritishMonarchy = 3
 						</code></pre>
 					</section>
 
 					<section>
 						<h2>Java Solution</h2>
-						<pre><code class="java" data-trim contenteditable>
+						<pre><code class="java" data-trim>
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class RoyalTweet{
 
-     public static void main(String []args){
+    public static void main(String []args){
         Scanner input = new Scanner(System.in);
         
         int numberOfLines = Integer.parseInt(input.nextLine().toString());
-        
+            
         int count = 0;
         for(int i = 0; i < numberOfLines; i++)
         {
@@ -93,34 +104,35 @@ public class RoyalTweet{
             StringTokenizer st = new StringTokenizer(line);
             while (st.hasMoreElements()) 
             {
-			    String word = st.nextElement().toString();
-			    if(word.toLowerCase().contains("@britishmonarchy"))
-			    {
-			        count ++;
-			    }    
-		    }
+                String word = st.nextElement().toString();
+                if(word.toLowerCase().contains("@britishmonarchy"))
+                {
+                    count ++;
+                    break;
+                }    
+            }
         }
         System.out.println("Total Tweets Containing @BritishMonarchy =" + count);
-     }
+    }
 }
 					</code></pre>
 					</section>
 					<section>
 						<h2>Python Solution</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 count = 0
 for x in range(int(input())):
-    count += input().lower().count("@britishmonarchy")
-
+    if input().lower().count("@britishmonarchy"):
+        count += 1
 print("Total Tweets Containing @BritishMonarchy = " + str(count))
 						</code></pre>
 					</section>
 					<section>
 						<h2>1 Line Python Solution</h2>
-						<pre><code class="python" data-trim contenteditable>
-print("Total Tweets Containing @BritishMonarchy = " + str(sum(
-    [input().lower().count("@britishmonarchy")
-     for x in range(int(input()))]
+						<pre><code class="python" data-trim>
+print("Total Tweets Containing @BritishMonarchy = " + str(
+    sum([1 if input().lower().count("@britishmonarchy") else 0
+    for x in range(int(input()))]
     )))
 						</code></pre>
 					</section>
@@ -129,26 +141,34 @@ print("Total Tweets Containing @BritishMonarchy = " + str(sum(
 					<section>
 						<h2>Useful Python Commands</h2>
 					</section>
-					<section>
-						<h2>Constants</h2>
-						<pre><code class="python" data-trim contenteditable>
-import string
-string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
-string.ascii_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-string.digits = "0123456789"
-string.hexdigits = "0123456789abcdefABCDEF"
-string.octdigits = "01234567"
-
-string.punctuation = '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
-string.printable
-string.whitespace 
+                    <section>
+						<h2>Indexing</h2>
+						<pre><code class="python" data-trim>
+>>> "Binary Bears"[:3]
+'Bin'
+>>> "Binary Bears"[3:]
+'ary Bears'
+>>> "Binary Bears"[3:4]
+'a'
+>>> "Binary Bears"[::2]
+'Bnr er'
+>>> "Binary Bears"[::-1]
+'sraeB yraniB'
+						</code></pre>
+					</section>
+                    <section>
+						<h2>List Comprehensions</h2>
+						<pre><code class="python" data-trim>
+>>> l = [1, 2, 3, 4]
+>>> [num+1 for num in l]
+[2, 3, 4, 5]
+>>> ["Case " + str(num) for num in l]
+['Case 1', 'Case 2', 'Case 3', 'Case 4']
 						</code></pre>
 					</section>
 					<section>
 						<h2>Change Case</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 #Change Case
 "BINARY BEARS".lower() 		-> 'binary bears'
 "binary bears".upper() 		-> 'BINARY BEARS'
@@ -166,7 +186,7 @@ string.whitespace
 					</section>
 					<section>
 						<h2>Find and Count</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 #Find
 "binary bears".find('a') = 3
 "binary bears".rfind('a') = 9 #Return the highest index
@@ -184,7 +204,7 @@ string.whitespace
 					</section>
 					<section>
 						<h2>Conditionals</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 str.isalpha()       
 str.isnumeric() 
 str.isdecimal() 
@@ -198,7 +218,7 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
                     <section>
 						<h2>Split</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> "Red fish, Blue Fish, Green Fish".split(',')    
 ['Red fish', ' Blue Fish', ' Green Fish']
 
@@ -215,15 +235,15 @@ str.isspace()    #" ","\t","\n","\r","\f"
 					</section>
                     <section>
 						<h2>Trimming Strings</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 "     B e a r   ".strip()  = 'B e a r'
-"     Bear   ".ltrip()     = 'Bear   '
+"     Bear   ".lstrip()     = 'Bear   '
 "     Bear   ".rstrip()    = '     Bear'            
 						</code></pre>
 					</section>
                     <section>
 						<h2>Format</h2>
-						<pre><code class="python" data-trim contenteditable>
+						<pre><code class="python" data-trim>
 >>> "1".zfill(2)
 '01'
 >>> "123".rjust(6)
@@ -234,6 +254,23 @@ str.isspace()    #" ","\t","\n","\r","\f"
 ' 123  '                      
 >>> "{0:.1f}".format(123.15)
 '123.2'                        
+						</code></pre>
+					</section>
+					<section>
+						<h2>Constants</h2>
+						<pre><code class="python" data-trim>
+import string
+string.ascii_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+string.ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
+string.ascii_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+string.digits = "0123456789"
+string.hexdigits = "0123456789abcdefABCDEF"
+string.octdigits = "01234567"
+
+string.punctuation = '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
+string.printable
+string.whitespace 
 						</code></pre>
 					</section>
 
