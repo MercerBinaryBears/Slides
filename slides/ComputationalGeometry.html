@@ -350,6 +350,69 @@ public class Vector {
                 </section>
                 <section>
                     <section>
+                        <h2>More Complex Applications</h2>
+                    </section>
+                    <section>
+                        <h3>Area of a Polygon</h3>
+                        <p>We can extend the area notion with the cross product to get the area of a polygon</p>
+                        <p>
+                            Given a polygon with $n$ points $(x_0, y_0), (x_1, y_1), ..., (x_{n-1}, y_{n-1})$,
+                            we can use the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace formula</a> to calculate area:
+                            \[
+                            A = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1}
+                            \]
+                        </p>
+                        <ul>
+                            <li>Note that $p_i = (x_i, y_i)$ and $p_n = p_0$</li>
+                            <li>This value can be negative, so take the absolute value</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Convex Hull</h3>
+                        <p>Finds the smallest <a href="https://en.wikipedia.org/wiki/Convex_hull">convex polygon</a> that contains a set of points</p>
+                        <p>
+                            <svg viewBox="0 0 100 100" height="300" width="300">
+                                <path fill="none" stroke="green" stroke-width="1" d="M20,10 L70,30 L60,70 L15,85 Z" />
+                                <circle fill="white" r="2" cx="70" cy="30" />
+                                <circle fill="white" r="2" cx="40" cy="50" />
+                                <circle fill="white" r="2" cx="60" cy="70" />
+                                <circle fill="white" r="2" cx="45" cy="45" />
+                                <circle fill="white" r="2" cx="20" cy="10" />
+                                <circle fill="white" r="2" cx="15" cy="85" />
+                            </svg>
+                        </p>
+                        <ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm#Pseudocode">Jarvis March</a></ul>
+                            <ul><a href="https://en.wikipedia.org/wiki/Graham_scan">Graham Scan</a></ul>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Line Segment Intersection</h3>
+                        <p>
+                            Given two line segments:
+                            \[
+                                L_1(t) = p_1 + d_1t, 0 \le t \le 1
+                            \]
+                            and
+                            \[
+                                L_2(t) = p_2 + d_2t, 0 \le t \le 1
+                            \]
+                        </p>
+                        <p>
+                            We can find where the intersect by clever usage of the dot product and cross product. Figure it out yourself!
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Many, Many More</h3>
+                        <ul>
+                            <li><a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulation</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Boolean_operations_on_polygons">Polygon Set Math</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Point_in_polygon">Point in Polygon</a> (cross products)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
                         <h2>Example Problems</h3>
                     </section>
                     <section>
@@ -377,8 +440,17 @@ public class Vector {
                             <li>Requires you to calculate the points contained in the convex hull of a set</li>
                             <li>The convex hull is the smallest convex polygon that contains a set of points (rubber band around nails)</li>
                             <li>Basic solution is to calculate the convex hull, and then keep only points not in the convex hull</li>
+                            <li>Pretty much self-explanatory: Implement Jarvis March...</li>
                             <li>Problem outlines an algorithm, but the <a href="http://www.math.ucsd.edu/~ronspubs/72_10_convex_hull.pdf">Graham Scan</a> is easier to write and understand in a competition</li>
                             <li>Really nice Convex Hull implementations <a href="https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain">here</a> (using the Monotone Chain Algorithm). I suggest you copy, bring to the contest, and just modify for the problem!</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/157/pdf">Star Simulations</a></h3>
+                        <ul>
+                            <li>Given a series of points, how many are less than $k$ units away from each other?</li>
+                            <li>Classic spatial indexing problem</li>
+                            <li>Solution <a href="ComputationalGeometry/stars_vanb.java">here</a>, using simple but clever spatial indexing</li>
                         </ul>
                     </section>
                 </section>
@@ -386,28 +458,6 @@ public class Vector {
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
 		<script src="../RevealJS/js/reveal.js"></script>
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: '../RevealJS/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: '../RevealJS/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '../RevealJS/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '../RevealJS/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '../RevealJS/plugin/zoom-js/zoom.js', async: true },
-					{ src: '../RevealJS/plugin/notes/notes.js', async: true },
-					{ src: '../RevealJS/plugin/math/math.js', async: true }
-				]
-			});
-
-		</script>
+        <script src="./reveal-init.js"></script>
     </body>
 </html>
