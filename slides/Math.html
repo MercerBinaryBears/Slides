@@ -117,6 +117,141 @@ public class Format {
         System.out.printf("%x %X\n", 255, 234);
 
         System.out.printf("%04x\n", 255);
+     }
+ }
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Bases and Number Representation</h2>
+                    </section>
+                    <section>
+                        <h3>How do you write a number</h3>
+                        <p>
+                            Consider the number "1362". breaking it down by "places" gives
+                        </p>
+                        <ul>
+                            <li>1 "thousand"</li>
+                            <li>3 "hundreds"</li>
+                            <li>6 "tens"</li>
+                            <li>2 "ones"</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Another Way to Write It</h3>
+                        <p>
+                        1362 can be written as $1(10^3) + 3(10^2) + 6(10^1) + 2(10^0)$.
+                        More generically, if the $k$th digit is $d_k$, we now have a number written as
+                        </p>
+                        \[
+                        n = \sum_{k=0}^n d_k 10^k
+                        \]
+                    </section>
+                    <section>
+                        <h3>But Why 10?</h3>
+                        <p>In fact, we choose any arbitrary base $b$, instead of 10:</p>
+                        \[
+                        n = \sum_{k=0}^n d_k b^k
+                        \]
+                        <p>So can we convert between bases?</p>
+                    </section>
+                    <section>
+                        <h3>Converting Between Bases (Part 1: Extracting Digits)</h3>
+                        <p>Let's say we have a number $N$, and we want to extra the $k$th digit in base $b$:</p>
+                        <p>If you strip the decimal from $N / (b^k)$, you remove digits below the $k$th digit</p>
+                        <p>If you take modulus (the % operator), of that, you drop the upper digits. So:</p>
+                        \[
+                        d_k = \lfloor \frac{N} {b ^ k} \rfloor \mod b
+                        \]
+                    </section>
+                    <section>
+                        <h3>Converting Between Bases (Part 2: How Many Digits)</h3>
+                        <p>
+                        If there are $D$ digits for the number $N$ in base $b$, then the largest digit will be written as
+                        $N = d_D b^D + \ldots$. We can extract $D$ via the logarithm (prove this yourself):
+                        </p>
+                        \[
+                        D = \log_b{N} = \frac{\log{N}}{\log{b}}
+                        \]
+                    </section>
+                    <section>
+                        <h3>Putting it together in Python</h3>
+                        <pre><code class="python">
+import math
+
+def extract_digit(number, base, digit):
+    return math.floor(number / (base ** digit)) % base
+
+def number_of_digits(number, base):
+    return math.ceil(math.log(number, base))
+
+def convert_to_base(number, base):
+    digits = number_of_digits(number, base)
+    converted = ''
+    for k in range(digits):
+        converted = str(extract_digit(number, base, k)) + converted
+    return converted
+
+print(convert_to_base(236, 2))
+print(bin(236))
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Caveat!</h3>
+                        <p>For bases over 10, extract_base will return a number over 10 (a two digit number), so you'll have to provide a mapping for digits...</p>
+                     </section>
+                 </section>
+                 <section>
+                    <section>
+                        <h2>How Computers Represent Numbers</h2>
+                    </section>
+                    <section>
+                        <h3>Binary</h3>
+                        <ul>
+                            <li>Numbers are represented as a series of bits: <pre><code>10110101011100000</code></pre></li>
+                            <li>Each position corresponds to whether or not <em>the corresponding power of two is included in the number</em></li>
+                            <li>
+                                Example <pre><code>1011</code></pre> means that $2^0$, $2^1$ and $2^3$ are present in the number.
+                                This means the number is $2^0 + 2^1 + 2^3 = 1 + 2 + 8 = 11$ in base 10.
+                            </li>
+                            <li>
+                                This is sometimes written as $1011_2 = 11_{10}$
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Negative Numbers and Overflow</h3>
+                        <ul>
+                            <li>
+                                In order to store the <em>sign</em> of a number, computers generally reserve the first bit for sign.
+                                If this bit is `0`, then the number is positive. If it's `1` the number is negative.
+                                This representation is called <a href="https://en.wikipedia.org/wiki/Two%27s_complement">Two's Complement</a>.
+                            </li>
+                            <li>
+                                Because numbers are fixed size in C and Java, that means there is a point where the number will max out and
+                                <em>wrap around to the negatives</em>!
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Wrap Around Example (in C)</h3>
+                        <pre><code class="c" data-trim>
+#include<stdio.h>
+
+int main(void) {
+    // we're going to keep doubling this number and print it as we go
+    int N = 1;
+
+    int i;
+
+    for(i = 0; i < 50; i++) {
+        // double the number
+        N *= 2;
+
+        // print i and our number out (using printf)
+        printf("i = %d", i);
+        printf(" N  = %d\n", N);
     }
 }
                         </code></pre>
@@ -126,6 +261,117 @@ public class Format {
                         <ul>
                             <li>The <a href="https://docs.oracle.com/javase/tutorial/java/data/numberformat.html">Java Docs</a></li>
                             <li>Or the <a href="https://docs.python.org/3.1/tutorial/inputoutput.html#fancier-output-formatting">Python Docs</a></li>
+                        </ul>
+                        <h3>The Output</h3>
+                        <pre><code data-trim>
+i = 0 N  = 2
+i = 1 N  = 4
+i = 2 N  = 8
+i = 3 N  = 16
+i = 4 N  = 32
+i = 5 N  = 64
+i = 6 N  = 128
+i = 7 N  = 256
+i = 8 N  = 512
+i = 9 N  = 1024
+i = 10 N  = 2048
+i = 11 N  = 4096
+i = 12 N  = 8192
+i = 13 N  = 16384
+i = 14 N  = 32768
+i = 15 N  = 65536
+i = 16 N  = 131072
+i = 17 N  = 262144
+i = 18 N  = 524288
+i = 19 N  = 1048576
+i = 20 N  = 2097152
+i = 21 N  = 4194304
+i = 22 N  = 8388608
+i = 23 N  = 16777216
+i = 24 N  = 33554432
+i = 25 N  = 67108864
+i = 26 N  = 134217728
+i = 27 N  = 268435456
+i = 28 N  = 536870912
+i = 29 N  = 1073741824
+i = 30 N  = -2147483648
+i = 31 N  = 0
+i = 32 N  = 0
+...
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Same Example in Python</h3>
+                        <pre><code class="python" data-trim>
+N = 1
+for i in range(50):
+    N *= 2
+
+    print("i = {0} N = {1}".format(i, N))
+                        </pre></code>
+                    </section>
+                    <section>
+                        <h3>Output</h3>
+                        <pre><code data-trim>
+i = 0 N = 2
+i = 1 N = 4
+i = 2 N = 8
+i = 3 N = 16
+i = 4 N = 32
+i = 5 N = 64
+i = 6 N = 128
+i = 7 N = 256
+i = 8 N = 512
+i = 9 N = 1024
+i = 10 N = 2048
+i = 11 N = 4096
+i = 12 N = 8192
+i = 13 N = 16384
+i = 14 N = 32768
+i = 15 N = 65536
+i = 16 N = 131072
+i = 17 N = 262144
+i = 18 N = 524288
+i = 19 N = 1048576
+i = 20 N = 2097152
+i = 21 N = 4194304
+i = 22 N = 8388608
+i = 23 N = 16777216
+i = 24 N = 33554432
+i = 25 N = 67108864
+i = 26 N = 134217728
+i = 27 N = 268435456
+i = 28 N = 536870912
+i = 29 N = 1073741824
+i = 30 N = 2147483648
+i = 31 N = 4294967296
+i = 32 N = 8589934592
+i = 33 N = 17179869184
+i = 34 N = 34359738368
+i = 35 N = 68719476736
+i = 36 N = 137438953472
+i = 37 N = 274877906944
+i = 38 N = 549755813888
+i = 39 N = 1099511627776
+i = 40 N = 2199023255552
+i = 41 N = 4398046511104
+i = 42 N = 8796093022208
+i = 43 N = 17592186044416
+i = 44 N = 35184372088832
+i = 45 N = 70368744177664
+i = 46 N = 140737488355328
+i = 47 N = 281474976710656
+i = 48 N = 562949953421312
+i = 49 N = 1125899906842624
+                        </code></pre>
+                    </section> 
+                    <section>
+                        <h3>What's the Lesson here?</h3>
+                        <ul>
+                            <li>Pay attention to the problem inputs/range of values you could potentially receive</li>
+                            <li>Choose a `long` when necessary</li>
+                            <li>Python does this for you under the hood! In fact, integers are arbitrary precision!</li>
+                            <li>If you need this behavior in Java, check out <a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html">BigInteger</a>
                         </ul>
                     </section>
                 </section>
