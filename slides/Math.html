@@ -93,6 +93,86 @@ def check_prime(prime):
 				</section>
                 <section>
                     <section>
+                        <h2>Bases and Number Representation</h2>
+                    </section>
+                    <section>
+                        <h3>How do you write a number</h3>
+                        <p>
+                            Consider the number "1362". breaking it down by "places" gives
+                        </p>
+                        <ul>
+                            <li>1 "thousand"</li>
+                            <li>3 "hundreds"</li>
+                            <li>6 "tens"</li>
+                            <li>2 "ones"</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Another Way to Write It</h3>
+                        <p>
+                        1362 can be written as $1(10^3) + 3(10^2) + 6(10^1) + 2(10^0)$.
+                        More generically, if the $k$th digit is $d_k$, we now have a number written as
+                        </p>
+                        \[
+                        n = \sum_{k=0}^n d_k 10^k
+                        \]
+                    </section>
+                    <section>
+                        <h3>But Why 10?</h3>
+                        <p>In fact, we choose any arbitrary base $b$, instead of 10:</p>
+                        \[
+                        n = \sum_{k=0}^n d_k b^k
+                        \]
+                        <p>So can we convert between bases?</p>
+                    </section>
+                    <section>
+                        <h3>Converting Between Bases (Part 1: Extracting Digits)</h3>
+                        <p>Let's say we have a number $N$, and we want to extra the $k$th digit in base $b$:</p>
+                        <p>If you strip the decimal from $N / (b^k)$, you remove digits below the $k$th digit</p>
+                        <p>If you take modulus (the % operator), of that, you drop the upper digits. So:</p>
+                        \[
+                        d_k = \lfloor \frac{N} {b ^ k} \rfloor \mod b
+                        \]
+                    </section>
+                    <section>
+                        <h3>Converting Between Bases (Part 2: How Many Digits)</h3>
+                        <p>
+                        If there are $D$ digits for the number $N$ in base $b$, then the largest digit will be written as
+                        $N = d_D b^D + \ldots$. We can extract $D$ via the logarithm (prove this yourself):
+                        </p>
+                        \[
+                        D = \log_b{N} = \frac{\log{N}}{\log{b}}
+                        \]
+                    </section>
+                    <section>
+                        <h3>Putting it together in Python</h3>
+                        <pre><code class="python">
+import math
+
+def extract_digit(number, base, digit):
+    return math.floor(number / (base ** digit)) % base
+
+def number_of_digits(number, base):
+    return math.ceil(math.log(number, base))
+
+def convert_to_base(number, base):
+    digits = number_of_digits(number, base)
+    converted = ''
+    for k in range(digits):
+        converted = str(extract_digit(number, base, k)) + converted
+    return converted
+
+print(convert_to_base(236, 2))
+print(bin(236))
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Caveat!</h3>
+                        <p>For bases over 10, extract_base will return a number over 10 (a two digit number), so you'll have to provide a mapping for digits...</p>
+                     </section>
+                 </section>
+                 <section>
+                    <section>
                         <h2>How Computers Represent Numbers</h2>
                     </section>
                     <section>
@@ -257,6 +337,7 @@ i = 49 N = 1125899906842624
                             <li>Python does this for you under the hood! In fact, integers are arbitrary precision!</li>
                             <li>If you need this behavior in Java, check out <a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html">BigInteger</a>
                         </ul>
+>>>>>>> efb46774027a0e17c1a94ca0eae65f5514b8b43c
                     </section>
                 </section>
 
