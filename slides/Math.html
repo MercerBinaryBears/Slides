@@ -78,18 +78,38 @@ def check_prime(prime):
 						<img data-src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif">
 					</section>
                     <section>
-					<h2>Checking if a number is prime</h2>
-					<pre><code class="python" data-trim contenteditable>
-def check_prime(prime):
-    num = 2
-    while num < (prime/2):
-        if(prime%num == 0):
-            return False
-        num += 1
-    return True
-					</code></pre>
+                        <h2>Sieve of Eratosthenes</h2>
+                        <pre><code class="python" data-trim contenteditable>
+def primes_upto(limit):
+    is_prime = [False] * 2 + [True] * (limit - 1) 
+    for n in range(int(limit**0.5 + 1.5)): # stop at ``sqrt(limit)``
+        if is_prime[n]:
+            for i in range(n*n, limit+1, n):
+                is_prime[i] = False
+    return [i for i, prime in enumerate(is_prime) if prime]
+                        </code></pre>
                     </section>
-                    
+                    <section>
+                        <h2>Sieve of Eratosthenes Breakdown</h2>
+                        <pre><code class="python" data-trim contenteditable>
+>>> is_prime = [False] * 2 + [True] * (10 - 1)
+[False, False, True, True, True, True, True, True, True, True, True]
+
+>>> for n in range(int(10**0.5 + 1.5)): # stop at ``sqrt(limit)``
+    print(n)   
+0
+1
+2
+3
+
+>>> for i in range(2*2, 10+1, 2):
+    print(i)  
+4
+6
+8
+10
+                        </code></pre>
+                    </section>                    
 				</section>
                 <section>
                     <section>
