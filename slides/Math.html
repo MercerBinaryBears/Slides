@@ -78,18 +78,38 @@ def check_prime(prime):
 						<img data-src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif">
 					</section>
                     <section>
-					<h2>Checking if a number is prime</h2>
-					<pre><code class="python" data-trim contenteditable>
-def check_prime(prime):
-    num = 2
-    while num < (prime/2):
-        if(prime%num == 0):
-            return False
-        num += 1
-    return True
-					</code></pre>
+                        <h2>Sieve of Eratosthenes</h2>
+                        <pre><code class="python">
+def primes_upto(limit):
+    is_prime = [False] * 2 + [True] * (limit - 1) 
+    for n in range(int(limit**0.5 + 1.5)): # stop at ``sqrt(limit)``
+        if is_prime[n]:
+            for i in range(n*n, limit+1, n):
+                is_prime[i] = False
+    return [i for i, prime in enumerate(is_prime) if prime]
+                        </code></pre>
                     </section>
-                    
+                    <section>
+                        <h2>Sieve of Eratosthenes Breakdown</h2>
+                        <pre><code class="python">
+>>> is_prime = [False] * 2 + [True] * (10 - 1)
+[False, False, True, True, True, True, True, True, True, True, True]
+
+>>> for n in range(int(10**0.5 + 1.5)): # stop at ``sqrt(limit)``
+    print(n)   
+0
+1
+2
+3
+
+>>> for i in range(2*2, 10+1, 2):
+    print(i)  
+4
+6
+8
+10
+                        </code></pre>
+                    </section>                    
 				</section>
                 <section>
                     <section>
@@ -375,7 +395,109 @@ i = 49 N = 1125899906842624
                         </ul>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Greatest Common Divisor</h2>
+                    </section>
+                    
+                    <section>
+                    <h3>Euclidean Algorithm<h3>
+                    <img data-src="https://i.ytimg.com/vi/fwuj4yzoX1o/maxresdefault.jpg" alt="">
+                    </section>
+                    
+                    <section>
+                    <h2>Python</h2>
+<pre><code class="python" data-trim>                    
+import fractions
+print(fractions.gcd(20,8))
+</code></pre>
+<p>Note: In python 3.5 use math.gcd(a,b)</p>
+                    </section>
+                    <section>
+                    <h2>Java</h2>
+<pre><code class="java" data-trim>                                       
+private static int gcdFunction(int a, int b) {
+    BigInteger b1 = BigInteger.valueOf(a);
+    BigInteger b2 = BigInteger.valueOf(b);
+    BigInteger gcd = b1.gcd(b2);
+    return gcd.intValue();
+}
+</code></pre> 
+<a href=http://stackoverflow.com/questions/4009198/java-get-greatest-common-divisor>Source</a>
+                    
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Least Common Multiple</h2>
+                </section>
+                <section>
+                    <h2>LCM</h2>
+                    <p>The smallest number that evenly divides two numbers.</p>
+                    \[
+                        lcm(a,b) = \frac{ab}{gcd(a,b)}
+                    \]
+                </section>
+                <section>
+                    <h2>Python</h2>
+<pre><code class="python" data-trim>                    
+def lcm(a,b):
+    return b*a/fractions.gcd(b,a)
+print(lcm(20,8)) #returns 40
+</code></pre>
+                </section>
 
+            </section>
+            <section>
+                <section>
+                    <h2>Fractions and Complex Numbers</h2>
+                </section>
+                <section>
+                        <h3>Python Fraction Class</h3>
+ <pre><code class="python" data-trim>               
+>>> from fractions import Fraction
+>>> x = Fraction(3,4)
+>>> y = Fraction(5,6)
+>>> x+y
+Fraction(19, 12)
+>>> x*y
+Fraction(5, 8)
+>>> x-y
+Fraction(-1, 12)
+>>> x/y
+Fraction(9, 10)
+>>> int(x+y)
+1
+>>> float(x+y)
+1.5833333333333333
+</code></pre>
+                </section>
+                <section>
+                <h3>Python Complex Math</h3>
+<pre><code class="python" data-trim> 
+>>> z = 2+3j
+>>> z.real
+2.0
+>>> z.imag
+3.0
+>>> z.conjugate()
+(2-3j)
+</code></pre> 
+<pre><code class="python"data-trim> 
+>>> abs(3 + 4j)
+5.0
+>>> pow(3 + 4j, 2)
+(-7+24j)
+</code></pre>  
+<pre><code class="python"data-trim> 
+>>> import cmath
+>>> cmath.sin(2 + 3j)
+(9.15449914691143-4.168906959966565j)
+</code></pre>  
+                </section>
+
+
+            </section>
 			</div>
 
 		</div>
