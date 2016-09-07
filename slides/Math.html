@@ -395,7 +395,61 @@ i = 49 N = 1125899906842624
                         </ul>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>Greatest Common Divisor</h2>
+                    </section>
+                    
+                    <section>
+                    <h3>Euclidean Algorithm<h3>
+                    <img data-src="https://i.ytimg.com/vi/fwuj4yzoX1o/maxresdefault.jpg" alt="">
+                    </section>
+                    
+                    <section>
+                    <h2>Python</h2>
+<pre><code class="python">                    
+import fractions
+print(fractions.gcd(20,8))
+</code></pre>
+<p>Note: In python 3.5 use Math.gcd(a,b)</p>
+                    </section>
+                    <section>
+                    <h2>Java</h2>
+<pre><code class="java">                                       
+private static int gcdFunction(int a, int b) {
+    BigInteger b1 = BigInteger.valueOf(a);
+    BigInteger b2 = BigInteger.valueOf(b);
+    BigInteger gcd = b1.gcd(b2);
+    return gcd.intValue();
+}
+</code></pre> 
+<a href=http://stackoverflow.com/questions/4009198/java-get-greatest-common-divisor>Source</a>
+                    
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Least Common Multiple</h2>
+                </section>
+                <section>
+                    <h2>LCM</h2>
+                    <p>The smallest number that evenly divides two numbers.</p>
+                    \[
+                        LCM = (B*A)/GCD(B,A)
+                    \]
+                </section>
+                <section>
+                    <h2>Python</h2>
+<pre><code class="python">                    
+def lcm(a,b):
+    return b*a/fractions.gcd(b,a)
+print(lcm(20,8)) #returns 40
+</code></pre>
+                </section>
 
+
+
+            </section>
 			</div>
 
 		</div>
