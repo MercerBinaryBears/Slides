@@ -447,6 +447,54 @@ print(lcm(20,8)) #returns 40
 </code></pre>
                 </section>
 
+            </section>
+            <section>
+                <section>
+                    <h2>Fractions and Complex Numbers</h2>
+                </section>
+                <section>
+                        <h3>Python Fraction Class</h3>
+ <pre><code class="python">               
+>>> from fractions import Fraction
+>>> x = Fraction(3,4)
+>>> y = Fraction(5,6)
+>>> x+y
+Fraction(19, 12)
+>>> x*y
+Fraction(5, 8)
+>>> x-y
+Fraction(-1, 12)
+>>> x/y
+Fraction(9, 10)
+>>> int(x+y)
+1
+>>> float(x+y)
+1.5833333333333333
+</code></pre>
+                </section>
+                <section>
+                <h3>Python Complex Math</h3>
+<pre><code class="python"> 
+>>> z = 2+3j
+>>> z.real
+2.0
+>>> z.imag
+3.0
+>>> z.conjugate()
+(2-3j)
+</code></pre> 
+<pre><code class="python"> 
+>>> abs(3 + 4j)
+5.0
+>>> pow(3 + 4j, 2)
+(-7+24j)
+</code></pre>  
+<pre><code class="python"> 
+>>> import cmath
+>>> cmath.sin(2 + 3j)
+(9.15449914691143-4.168906959966565j)
+</code></pre>  
+                </section>
 
 
             </section>
