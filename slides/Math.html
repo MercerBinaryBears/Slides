@@ -93,6 +93,37 @@ def check_prime(prime):
 				</section>
                 <section>
                     <section>
+                        <h2>Formatting Numbers</h2>
+                    </section>
+                    <section>
+                        <h3>Python</h3>
+                        <pre><code class="python" data-trim>
+print("{0}".format(1)) # Place a value into a string, using a placeholder
+
+print("{0:.4f} {1:.2f}".format(1, 2)) # Prints "1.0000 2.00"
+
+print("Address {0:x} and {1:X}".format(255, 234)) # prints "Address ff and EA"
+
+print("{0:04x}".format(255)) # prints "00ff" (padding is great!)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Java</h3>
+                        <pre><code class="java" data-trim>
+public class Format {
+    public static void main(String[] args) {
+        System.out.printf("%.4f %.2f\n", 1.0, 2.0); // note the values are NOT integers
+
+        System.out.printf("%x %X\n", 255, 234);
+
+        System.out.printf("%04x\n", 255);
+     }
+ }
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
                         <h2>Bases and Number Representation</h2>
                     </section>
                     <section>
@@ -226,6 +257,11 @@ int main(void) {
                         </code></pre>
                     </section>
                     <section>
+                        <h3>For more help see:</h3>
+                        <ul>
+                            <li>The <a href="https://docs.oracle.com/javase/tutorial/java/data/numberformat.html">Java Docs</a></li>
+                            <li>Or the <a href="https://docs.python.org/3.1/tutorial/inputoutput.html#fancier-output-formatting">Python Docs</a></li>
+                        </ul>
                         <h3>The Output</h3>
                         <pre><code data-trim>
 i = 0 N  = 2
@@ -337,7 +373,6 @@ i = 49 N = 1125899906842624
                             <li>Python does this for you under the hood! In fact, integers are arbitrary precision!</li>
                             <li>If you need this behavior in Java, check out <a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html">BigInteger</a>
                         </ul>
->>>>>>> efb46774027a0e17c1a94ca0eae65f5514b8b43c
                     </section>
                 </section>
 
