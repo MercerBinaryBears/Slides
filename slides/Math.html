@@ -79,7 +79,7 @@ def check_prime(prime):
 					</section>
                     <section>
                         <h2>Sieve of Eratosthenes</h2>
-                        <pre><code class="python" data-trim contenteditable>
+                        <pre><code class="python">
 def primes_upto(limit):
     is_prime = [False] * 2 + [True] * (limit - 1) 
     for n in range(int(limit**0.5 + 1.5)): # stop at ``sqrt(limit)``
@@ -91,7 +91,7 @@ def primes_upto(limit):
                     </section>
                     <section>
                         <h2>Sieve of Eratosthenes Breakdown</h2>
-                        <pre><code class="python" data-trim contenteditable>
+                        <pre><code class="python">
 >>> is_prime = [False] * 2 + [True] * (10 - 1)
 [False, False, True, True, True, True, True, True, True, True, True]
 
@@ -407,7 +407,7 @@ i = 49 N = 1125899906842624
                     
                     <section>
                     <h2>Python</h2>
-<pre><code class="python">                    
+<pre><code class="python" data-trim>                    
 import fractions
 print(fractions.gcd(20,8))
 </code></pre>
@@ -415,7 +415,7 @@ print(fractions.gcd(20,8))
                     </section>
                     <section>
                     <h2>Java</h2>
-<pre><code class="java">                                       
+<pre><code class="java" data-trim>                                       
 private static int gcdFunction(int a, int b) {
     BigInteger b1 = BigInteger.valueOf(a);
     BigInteger b2 = BigInteger.valueOf(b);
@@ -440,7 +440,7 @@ private static int gcdFunction(int a, int b) {
                 </section>
                 <section>
                     <h2>Python</h2>
-<pre><code class="python">                    
+<pre><code class="python" data-trim>                    
 def lcm(a,b):
     return b*a/fractions.gcd(b,a)
 print(lcm(20,8)) #returns 40
@@ -454,7 +454,7 @@ print(lcm(20,8)) #returns 40
                 </section>
                 <section>
                         <h3>Python Fraction Class</h3>
- <pre><code class="python">               
+ <pre><code class="python" data-trim>               
 >>> from fractions import Fraction
 >>> x = Fraction(3,4)
 >>> y = Fraction(5,6)
@@ -474,7 +474,7 @@ Fraction(9, 10)
                 </section>
                 <section>
                 <h3>Python Complex Math</h3>
-<pre><code class="python"> 
+<pre><code class="python" data-trim> 
 >>> z = 2+3j
 >>> z.real
 2.0
@@ -483,13 +483,13 @@ Fraction(9, 10)
 >>> z.conjugate()
 (2-3j)
 </code></pre> 
-<pre><code class="python"> 
+<pre><code class="python"data-trim> 
 >>> abs(3 + 4j)
 5.0
 >>> pow(3 + 4j, 2)
 (-7+24j)
 </code></pre>  
-<pre><code class="python"> 
+<pre><code class="python"data-trim> 
 >>> import cmath
 >>> cmath.sin(2 + 3j)
 (9.15449914691143-4.168906959966565j)
