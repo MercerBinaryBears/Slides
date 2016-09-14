@@ -63,9 +63,30 @@
                     <section>
                         <h2>Governing Equation</h2>
                         <p>
-                            <img src="Combinatorics/combinations.svg" alt="Combinations Equation" width="50%"/>                 
+                            \[
+                                {n\choose k} = \frac{n!}{k!(n - k)!}
+                            \]
                         </p>
-                    </section>                    
+                    </section>    
+                    
+                    <section>
+                        <h2>Let's look at an example</h2>
+                        <p>
+                            While playing poker, you wonder how many possible hands you could possibly be dealt. You know that a standard deck contains 52 cards and your hand holds 5 cards. Each card is distinct and your hand can be rearranged, so the order is unimportant.
+                        </p>
+                    </section>        
+                    
+                    <section>
+                        <p>
+                            \[
+                                {52\choose 5} = \frac{52!}{5!(52 - 5)!}
+                            \]
+                        </p>
+                        <br />
+                        <p>
+                            Plugging this into your favorite calculator or REPL shows that there are 2,598,960 possible hands
+                        </p>
+                    </section>           
 				</section>
                 
                 <section>
@@ -79,7 +100,28 @@
                     <section>
                         <h2>Governing Equation</h2>
                         <p>
-                            <img src="Combinatorics/Permutations.gif" alt="Combinations Equation" width="50%"/>                 
+                            \[
+                                _{n}P_{k} = \frac{n!}{(n - k)!}
+                            \]
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Let's look at an example</h2>
+                        <p>
+                            Buff, being the studmuffin he is, has many adoring fans. One such fan wants to make a shrine to Buff with a 3 picture frame using photos from their Buff folder containing 200 pictures. How many ways can these pictures be placed in this picture frame? 
+                        </p>
+                        <img src="Combinatorics/shittyBuffPortraits.jpg" alt="Shitty portraits of Buffycakes" width="50%" />
+                    </section>
+                    
+                    <section>
+                        <p>
+                            \[
+                                _{200}P_{3} = \frac{200!}{(200 - 3)!}
+                            \]
+                        </p>
+                        <p>
+                            Plugging this into your favorite calculator or REPL shows that there are 7,880,400 possible ways to worship everyone's favorite boy
                         </p>
                     </section>
                 </section>
@@ -95,7 +137,9 @@
                     <section>
                         <h2>Catalan Numbers</h2>
                         <p>
-                            <img src="Combinatorics/Catalan.svg" alt="Combinations Equation" width="50%"/>                 
+                            \[
+                                C_{n} = \frac{1}{n + 1} {2n\choose n} = \frac{(2n)!}{(n + 1)!n!} = \prod_{k = 2}^n\frac{n + k}{k} for \ n \ge 0
+                            \]
                         </p>
                         <p>
                             
