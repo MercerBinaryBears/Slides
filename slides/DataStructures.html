@@ -40,7 +40,50 @@
                     <h1>Data Structures</h1>
                 </section>
                 <section>
-                    <h2>Lists</h2>
+                    <section>
+                        <h2>Lists</h2>
+                    </section>
+                    <section>
+                        <h3>What is a list?</h3>
+                        <ul>
+                            <li>Like an array, but can grow and shrink to hold as many items as you need</li>
+                            <li>Generally has a method like <code>add</code> or <code>push</code> to add new things to the end</li>
+                            <li>Also has a method like <code>remove</code> to remove an item at a particular index</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python" data-trim>
+L = ['a', 'b', 'c']
+L.append('d') # add onto the end
+L.extend(['e', 'f', 'g']) # add multiple items
+L.insert(1, 'sneaky') # insert 'sneaky' at index 1
+L.pop(1) # remove the item at index 1
+L.pop() # remove the item at the end
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Stacks</h3>
+                        <ul>
+                            <li>Like a list, but you can only add and remove things from the end</li>
+                            <li>Essentially like restricting yourself to <code>pop()</code> and <code>append</code></li>
+                            <li>Sometimes described as LIFO (Last in, first out)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Queue</h3>
+                        <ul>
+                            <li>Like a list, but can only remove from the front and add to end</li>
+                            <li>Like restricting to only <code>pop(0)</code> and <code>append</code></li>
+                            <li>Sometimes described as FIFO (First in, first out)</li>
+                            <li>
+                                Also can be extended to have "priority", where each item in the queue has a priority.
+                                The highest priority things always exit next (so no FIFO).
+                                Called a <a href="https://en.wikipedia.org/wiki/Priority_queue">Priority Queue</a>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
                 <section>
                     <h2>Sets</h2>
