@@ -41,6 +41,34 @@
                 </section>
                 <section>
                     <section>
+                        <h2>Arrays</h2>
+                    </section>
+                    <section>
+                        <h3>How do arrays work?</h3>
+                        <ul>
+                            <li>Arrays are a <em>contiguous block of memory</em> to be treated a group of like types</li>
+                            <li>For instance an array of 10 4-byte integers will actually take up 40-bytes of contiguous memory</li>
+                            <li>Internally, the computer stores the array as <em>a pointer to the first element</em> and uses your index to offset it to the value you want</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Example</h3>
+                        <p>Consider this array:</p>
+                        <pre><code class="java" data-trim>
+int[] numbers = { 0, 1, 1, 2, 3, 5, 8 };
+                        </code></pre>
+                        <p>When you ask for <code>numbers[3]</code>, internally the computer does this fake pseudo-code:</p>
+                        <pre><code>
+func array_access(index) {
+    address = numbers; // numbers is actually an address!
+    shifted_address = address + index * size_of_integer;
+    return value_at_memory_location(shifted_address)
+}
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
                         <h2>Lists</h2>
                     </section>
                     <section>
