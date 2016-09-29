@@ -114,7 +114,48 @@ L.pop() # remove the item at the end
                     </section>
                 </section>
                 <section>
-                    <h2>Sets</h2>
+                    <section>
+                        <h2>Sets</h2>
+                    </section>
+                    <section>
+                        <h3>What is a set</h3>
+                        <ul>
+                            <li>A unique group of items</li>
+                            <li>An item can only occur in a set <em>once</em></li>
+                            <li>So adding 1 to the set $$ \{ 1, 2, 3 \} $$ is the same set</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Set Operations</h3>
+                        <p>Given two sets S and T</p>
+                        <ul>
+                            <li>$$S \cup T$$ is the <em>union</em> of the sets, with all elements from both set in it</li>
+                            <li>$$S \cap T$$ is the <em>intersection</em> of the sets, a set that only has the common elements from both sets in it</li>
+                            <li>$$S - T$$ is the <em>set difference</em> that has all elements from the first set that aren't in the second</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python">
+S = set([1, 2, 3])
+T = set([3, 4, 5])
+S & T # Intersection, gives set([3])
+S | T # Union, gives set([1, 2, 3, 4, 5])
+S - T # Difference, gives set([1, 2])
+2 in S # Boolean, is 2 in the set?
+6 not in S # Boolean, is 6 not in the set
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Example Problem: Letters Not Used</h3>
+                        <ul>
+                            <li><a href="http://problems.aprilandchip.com/problems/4/pdf">Problem Set</a></li>
+                            <li>First create a set of all lowercase letters <code>A = set(['a', 'b', ...])</code></li>
+                            <li>Next, add all the letters (in lowercase) from the input string into another set <code>B</code></li>
+                            <li>The letters not used is <code>A - B</code></li>
+                            <li>If you sort those, then join them <code>''.join(sorted(A - B))</code></li>
+                        </ul>
+                    </section>
                 </section>
                 <section>
                     <h2>Dictionaries</h2>
