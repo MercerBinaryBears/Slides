@@ -158,16 +158,112 @@ S - T # Difference, gives set([1, 2])
                     </section>
                 </section>
                 <section>
-                    <h2>Dictionaries</h2>
+                    <section>
+                        <h2>Dictionaries</h2>
+                    </section>
+                    <section>
+                        <h3>What is a dictionary</h3>
+                        <ul>
+                            <li>Provides a mapping from keys to values</li>
+                            <li>Similar to an array, but instead of numeric keys, the keys can be (mostly) any type</li>
+                            <li>Useful for providing a lookup table, or mapping of some sort</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python" data-trim>
+D = {} # empty dictionary declaration
+D = { 'Georgia' : 'GA', 'Florida' : 'FL' } # declaring a dictionary with data
+D['New York'] = 'NY' # adding a new entry
+D['Georgia'] # Spits out 'GA'
+'Alabama' in D # Is 'Alabama' a key?
+D.keys() # provides an iterable over the dictionary's keys are
+D.values() # provides an iterable over the dictionary's values
+                        </code></pre>
+                    </section>
                 </section>
                 <section>
-                    <h2>Trees</h2>
-                </section>
-                <section>
-                    <h2>Custom Data Structures</h2>
-                </section>
-                <section>
-                    <h2>Example Problems</h2>
+                    <section>
+                        <h2>Trees</h2>
+                    </section>
+                    <section>
+                        <h3>What is a tree</h3>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_tree.svg" width="200" alt="Tree" />
+                        <ul>
+                            <li>Stores heirarchical data</li>
+                            <li>Consists of a series of nodes</li>
+                            <li>Each node has a reference to a parent, and its children (if any)</li>
+                            <li>Sometimes, it's helpful to associate a value with the node (like a binary search tree)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Basic Implementation</h3>
+                        <pre><code class="python" data-trim>
+class Node:
+    def __init__(self, value):
+        # initially, this node has no parent, nor any children
+        self.value = value
+        self.parent = None
+        self.children = []
+
+    def add_child(self, child):
+        # to add a child, add the passed node to the list of children,
+        # but also link it back to "self", which is the parent
+        child.parent = self
+        self.children.append(child)
+
+def traverse(root, do_something):
+    # This is the list of nodes we have yet to visit. We start with just
+    # the root
+    to_visit = [root]
+
+    # while there are more nodes to visit
+    while len(to_visit) is not 0:
+        # get the next node to visit.
+        # Note: to_visit.pop() gives a Depth-First-Search
+        # to_visit.pop(0) gives a Breadth-First-Search
+        # check out https://en.wikipedia.org/wiki/Tree_traversal
+        #next_node = to_visit.pop()
+        next_node = to_visit.pop(0)
+
+        # Add all of the children of this node as nodes to visit
+        to_visit.extend(next_node.children)
+
+        # do something with the node (we passed the "action" as a parameter)
+        do_something(next_node)
+
+# Building a tree here
+A = Node('A')
+
+# First level
+B = Node('B')
+A.add_child(B)
+C = Node('C')
+A.add_child(C)
+
+# Second level
+D = Node('D')
+B.add_child(D)
+E = Node('E')
+B.add_child(E)
+
+F = Node('F')
+C.add_child(F)
+
+# Call the traverse function with a starting node, and a function to
+# perform at each node
+traverse(A, lambda node : print(node.value))
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Other Tree Operations</h3>
+                        <ul>
+                            <li>Is X in the tree? Depending on how we structure the tree, this can be a fast operation</li>
+                            <li>Add a node to a tree</li>
+                            <li>Remove a node from a tree</li>
+                            <li>Determining how far a node is from the root (the "depth")</li>
+                        </ul>
+                    </section>
                 </section>
             </div>
         </div>
