@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Data Structures</title>
+
+		<meta name="description" content="Structures that store data">
+		<meta name="author" content="Chip Bell">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../RevealJS/css/reveal.css">
+		<link rel="stylesheet" href="../RevealJS/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../RevealJS/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = '../RevealJS/text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Data Structures</h1>
+                </section>
+                <section>
+                    <section>
+                        <h2>Arrays</h2>
+                    </section>
+                    <section>
+                        <h3>How do arrays work?</h3>
+                        <ul>
+                            <li>Arrays are a <em>contiguous block of memory</em> to be treated a group of like types</li>
+                            <li>For instance an array of 10 4-byte integers will actually take up 40-bytes of contiguous memory</li>
+                            <li>Internally, the computer stores the array as <em>a pointer to the first element</em> and uses your index to offset it to the value you want</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Example</h3>
+                        <p>Consider this array:</p>
+                        <pre><code class="java" data-trim>
+int[] numbers = { 0, 1, 1, 2, 3, 5, 8 };
+                        </code></pre>
+                        <p>When you ask for <code>numbers[3]</code>, internally the computer does this fake pseudo-code:</p>
+                        <pre><code>
+func array_access(index) {
+    address = numbers; // numbers is actually an address!
+    shifted_address = address + index * size_of_integer;
+    return value_at_memory_location(shifted_address)
+}
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Lists</h2>
+                    </section>
+                    <section>
+                        <h3>What is a list?</h3>
+                        <ul>
+                            <li>Like an array, but can grow and shrink to hold as many items as you need</li>
+                            <li>Generally has a method like <code>add</code> or <code>push</code> to add new things to the end</li>
+                            <li>Also has a method like <code>remove</code> to remove an item at a particular index</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python" data-trim>
+L = ['a', 'b', 'c']
+L.append('d') # add onto the end
+L.extend(['e', 'f', 'g']) # add multiple items
+L.insert(1, 'sneaky') # insert 'sneaky' at index 1
+L.pop(1) # remove the item at index 1
+L.pop() # remove the item at the end
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Stacks</h3>
+                        <ul>
+                            <li>Like a list, but you can only add and remove things from the end</li>
+                            <li>Essentially like restricting yourself to <code>pop()</code> and <code>append</code></li>
+                            <li>Sometimes described as LIFO (Last in, first out)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Queue</h3>
+                        <ul>
+                            <li>Like a list, but can only remove from the front and add to end</li>
+                            <li>Like restricting to only <code>pop(0)</code> and <code>append</code></li>
+                            <li>Sometimes described as FIFO (First in, first out)</li>
+                            <li>
+                                Also can be extended to have "priority", where each item in the queue has a priority.
+                                The highest priority things always exit next (so no FIFO).
+                                Called a <a href="https://en.wikipedia.org/wiki/Priority_queue">Priority Queue</a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Sets</h2>
+                    </section>
+                    <section>
+                        <h3>What is a set</h3>
+                        <ul>
+                            <li>A unique group of items</li>
+                            <li>An item can only occur in a set <em>once</em></li>
+                            <li>So adding 1 to the set $$ \{ 1, 2, 3 \} $$ is the same set</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Set Operations</h3>
+                        <p>Given two sets S and T</p>
+                        <ul>
+                            <li>$$S \cup T$$ is the <em>union</em> of the sets, with all elements from both set in it</li>
+                            <li>$$S \cap T$$ is the <em>intersection</em> of the sets, a set that only has the common elements from both sets in it</li>
+                            <li>$$S - T$$ is the <em>set difference</em> that has all elements from the first set that aren't in the second</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python">
+S = set([1, 2, 3])
+T = set([3, 4, 5])
+S & T # Intersection, gives set([3])
+S | T # Union, gives set([1, 2, 3, 4, 5])
+S - T # Difference, gives set([1, 2])
+2 in S # Boolean, is 2 in the set?
+6 not in S # Boolean, is 6 not in the set
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Example Problem: Letters Not Used</h3>
+                        <ul>
+                            <li><a href="http://problems.aprilandchip.com/problems/4/pdf">Problem Set</a></li>
+                            <li>First create a set of all lowercase letters <code>A = set(['a', 'b', ...])</code></li>
+                            <li>Next, add all the letters (in lowercase) from the input string into another set <code>B</code></li>
+                            <li>The letters not used is <code>A - B</code></li>
+                            <li>If you sort those, then join them <code>''.join(sorted(A - B))</code></li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Dictionaries</h2>
+                    </section>
+                    <section>
+                        <h3>What is a dictionary</h3>
+                        <ul>
+                            <li>Provides a mapping from keys to values</li>
+                            <li>Similar to an array, but instead of numeric keys, the keys can be (mostly) any type</li>
+                            <li>Useful for providing a lookup table, or mapping of some sort</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Python Example</h3>
+                        <pre><code class="python" data-trim>
+D = {} # empty dictionary declaration
+D = { 'Georgia' : 'GA', 'Florida' : 'FL' } # declaring a dictionary with data
+D['New York'] = 'NY' # adding a new entry
+D['Georgia'] # Spits out 'GA'
+'Alabama' in D # Is 'Alabama' a key?
+D.keys() # provides an iterable over the dictionary's keys are
+D.values() # provides an iterable over the dictionary's values
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Trees</h2>
+                    </section>
+                    <section>
+                        <h3>What is a tree</h3>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_tree.svg" width="200" alt="Tree" />
+                        <ul>
+                            <li>Stores heirarchical data</li>
+                            <li>Consists of a series of nodes</li>
+                            <li>Each node has a reference to a parent, and its children (if any)</li>
+                            <li>Sometimes, it's helpful to associate a value with the node (like a binary search tree)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Basic Implementation</h3>
+                        <pre><code class="python" data-trim>
+class Node:
+    def __init__(self, value):
+        # initially, this node has no parent, nor any children
+        self.value = value
+        self.parent = None
+        self.children = []
+
+    def add_child(self, child):
+        # to add a child, add the passed node to the list of children,
+        # but also link it back to "self", which is the parent
+        child.parent = self
+        self.children.append(child)
+
+def traverse(root, do_something):
+    # This is the list of nodes we have yet to visit. We start with just
+    # the root
+    to_visit = [root]
+
+    # while there are more nodes to visit
+    while len(to_visit) is not 0:
+        # get the next node to visit.
+        # Note: to_visit.pop() gives a Depth-First-Search
+        # to_visit.pop(0) gives a Breadth-First-Search
+        # check out https://en.wikipedia.org/wiki/Tree_traversal
+        #next_node = to_visit.pop()
+        next_node = to_visit.pop(0)
+
+        # Add all of the children of this node as nodes to visit
+        to_visit.extend(next_node.children)
+
+        # do something with the node (we passed the "action" as a parameter)
+        do_something(next_node)
+
+# Building a tree here
+A = Node('A')
+
+# First level
+B = Node('B')
+A.add_child(B)
+C = Node('C')
+A.add_child(C)
+
+# Second level
+D = Node('D')
+B.add_child(D)
+E = Node('E')
+B.add_child(E)
+
+F = Node('F')
+C.add_child(F)
+
+# Call the traverse function with a starting node, and a function to
+# perform at each node
+traverse(A, lambda node : print(node.value))
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Other Tree Operations</h3>
+                        <ul>
+                            <li>Is X in the tree? Depending on how we structure the tree, this can be a fast operation</li>
+                            <li>Add a node to a tree</li>
+                            <li>Remove a node from a tree</li>
+                            <li>Determining how far a node is from the root (the "depth")</li>
+                        </ul>
+                    </section>
+                </section>
+                    <section>
+                        <section>
+                            <h3>Custom Data Structures</h3>
+                            <ul>
+                                <li>Knowing these data structures are important</li>
+                                <li>Sometimes, though, you have to combine them in new ways</li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3>Examples</h3> 
+                            <ul>
+                                <li>
+                                    <a href="http://problems.aprilandchip.com/problems?name=&tags=9">Modeling a game</a>
+                                    requires a data structure to model the game and how it transitions between states
+                                    (and generally lot's of Breadth First Search)
+                                </li>
+                                <li>
+                                    Binary Search Trees for fast data retrieval
+                                </li>
+                                <li>
+                                    <a href="http://problems.aprilandchip.com/problems/23/pdf">Simulations</a>
+                                </li>
+                                <li>
+                                    Many, many more. Essentially, don't be afraid to combine stuff to get things done.
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+		<script src="../RevealJS/lib/js/head.min.js"></script>
+		<script src="../RevealJS/js/reveal.js"></script>
+        <script src="./reveal-init.js"></script>
+    </body>
+</html>
