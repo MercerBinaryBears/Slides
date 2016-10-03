@@ -173,6 +173,50 @@ print(G.neighbors('A')) # ['C', 'B']
                         </ul>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h3>Graph-related problems</h3>
+                    </section>
+                    <section>
+                        <h3>Is node B reachable from A?</h3>
+                        <ul>
+                            <li>A and B might not directly be neighbors, but they still might be connected indirectly</li>
+                            <li><a href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-First Search</a> and <a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-First Search</a> are great algorithms for this</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>What's the shortest way to get from A to B?</h3>
+                        <ul>
+                            <li>Edges have weights, so some edges are more costly to traverse</li>
+                            <li>We want to find the path to take that is least costly (think Google Maps directions)</li>
+                            <li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a> is an appropriate algorithm</li>
+                            <li>
+                                Sometimes, you need all shortest from every node to every other node. This is called "All-Pairs Shortest Path",
+                                and you can use <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd Warshall</a> to solve it.
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>What's the set edges with the lowest weight so that the graph remains connected</h3>
+                        <ul>
+                            <li>This is called the <a href="https://en.wikipedia.org/wiki/Minimum_spanning_tree">Minimum Spanning Tree<a></li>
+                            <li>
+                                <a href="https://en.wikipedia.org/wiki/Prim%27s_algorithm">Prim's Algorithm</a> and 
+                                <a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's Algorithm</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>If my edges were pipes with capacity, what's the most water I could pump from vertex to another</h3>
+                        <ul>
+                            <li>This is referred to as the <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">Maximum Flow Problem</a></li>
+                            <li>
+                                Both <a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm">Ford-Fulkerson</a>
+                                and <a href="https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm">Push-Relabel</a> are algorithms for this
+                            </li>
+                        </ul>
+                    </section>
+                </section>
             </div>
         </div>
 		<script src="../RevealJS/lib/js/head.min.js"></script>
