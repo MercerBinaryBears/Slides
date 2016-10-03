@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Combinatorics</title>
+
+		<meta name="description" content="Counting made fun.">
+		<meta name="author" content="John Robison">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../RevealJS/css/reveal.css">
+		<link rel="stylesheet" href="../RevealJS/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../RevealJS/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = '../RevealJS/text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Combinatorics</h1>
+					<h4>Making counting fun.</h4>
+					<p>
+						<small>Created by John Robison</a></small>
+					</p>
+				</section>
+
+				<section>
+                    <section>
+                        <h2>Combinations </h2>
+                        <p>
+                            Creating a subset from a collection where the order of selection <strong>does not</strong> matter. 
+                        </p>
+                        <br />
+                        <p>
+                            This is also known as the Binomial Coefficient.
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Governing Equation</h2>
+                        <p>
+                            \[
+                                {n\choose k} = \frac{n!}{k!(n - k)!}
+                            \]
+                        </p>
+                    </section>    
+                    
+                    <section>
+                        <h2>Let's look at an example</h2>
+                        <p>
+                            While playing poker, you wonder how many possible hands you could possibly be dealt. You know that a standard deck contains 52 cards and your hand holds 5 cards. Each card is distinct and your hand can be rearranged, so the order is unimportant.
+                        </p>
+                    </section>        
+                    
+                    <section>
+                        <p>
+                            \[
+                                {52\choose 5} = \frac{52!}{5!(52 - 5)!}
+                            \]
+                        </p>
+                        <br />
+                        <p>
+                            Plugging this into your favorite calculator or REPL shows that there are 2,598,960 possible hands
+                        </p>
+                    </section>           
+				</section>
+                
+                <section>
+                    <section>
+                        <h2>Permutations </h2>
+                        <p>
+                            Creating a subset from a collection where the order of selection <strong>does</strong> matter. 
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Governing Equation</h2>
+                        <p>
+                            \[
+                                _{n}P_{k} = \frac{n!}{(n - k)!}
+                            \]
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Let's look at an example</h2>
+                        <p>
+                            Buff, being the studmuffin he is, has many adoring fans. One such fan wants to make a shrine to Buff with a 3 picture frame using photos from their Buff folder containing 200 pictures. How many ways can these pictures be placed in this picture frame? 
+                        </p>
+                        <img src="Combinatorics/shittyBuffPortraits.jpg" alt="Shitty portraits of Buffycakes" width="50%" />
+                    </section>
+                    
+                    <section>
+                        <p>
+                            \[
+                                _{200}P_{3} = \frac{200!}{(200 - 3)!}
+                            \]
+                        </p>
+                        <p>
+                            Plugging this into your favorite calculator or REPL shows that there are 7,880,400 possible ways to worship everyone's favorite boy
+                        </p>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Off the Wall Number Sets </h2>
+                        <p>
+                            Really obscure number sets that always seem to creep up in competitons as the 'easy' solution to a problem. 
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Catalan Numbers</h2>
+                        <p>
+                            \[
+                                C_{n} = \frac{1}{n + 1} {2n\choose n} = \frac{(2n)!}{(n + 1)!n!} = \prod_{k = 2}^n\frac{n + k}{k} for \ n \ge 0
+                            \]
+                        </p>
+                        <p>
+                            
+                            <pre><code data-trim>
+1
+1
+2
+5
+14
+42
+132
+429
+1430
+4862
+16798
+...
+                            </code></pre>
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Why Are The Catalan Numbers Important?</h2>
+                        <p>The people who make the problems said so.</p>
+                    </section>                    
+                    
+                    <section>
+                        <h2>An Example Problem That We've Seen At Competiton</h2>
+                        <p>
+                            A Dyck Word is a string consisting of n X's and n Y's such that no initial segment of the string has more Y's than X's. The count of the Dyck words for a string of length 2n is C<small>n</small>.  
+                        </p>
+                        <br />
+                        <p>
+                            XXXYYY     XYXXYY     XYXYXY     XXYYXY     XXYXYY.
+                        </p>
+                    </section>                
+                    
+                    <section>
+                        <h2><a href="https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics">Additional examples of Catalan Number usages</a></h2>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Balls and Buckets</h2>
+                        <p>
+                            In a system where there are n balls and m buckets, this problem consists of determining the load (i.e. how many balls are in a given bucket).
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Random Allocation</h2>
+                        <p>
+                            \[
+                                Maximum\ Load = \frac{log\ n}{log\ log\ n} (1 + o(1))
+                            \]
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Example Applications</h2>
+                        <ul>
+                            <li>Dynamic Resource Allocation</li>
+                            <li>Hashing</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Itertools </h2>
+                        <p>
+                            Or how Python is once again the superior language.  
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Basics of Itertools</h2>
+						<pre><code class="python" data-trim>
+itertools.combinations("ABCDEFG", 3)
+itertools.combinations_with_replacement("ABCDEFG", 3)
+itertools.permutations("ABCDEFG", 3)
+itertools.count(10, 2)
+itertools.cycle("ABCD")
+itertools.repeat(10, 3)
+						</code></pre>
+                    </section>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="../RevealJS/lib/js/head.min.js"></script>
+		<script src="../RevealJS/js/reveal.js"></script>
+
+        <script src="./reveal-init.js"></script>
+
+	</body>
+</html>
