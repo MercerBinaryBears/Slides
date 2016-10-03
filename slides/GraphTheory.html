@@ -127,13 +127,17 @@
                         <pre><code class="python" data-trim="true">
 class Graph:
     def __init__(self):
+        # Initial graph has nothing connected
         self.adjacency = {}
 
     def connect(self, vertex1, vertex2, weight=None):
+        # If the vertex has never been added to the graph, add it, but with no connects
         if vertex1 not in self.adjacency:
             self.adjacency[vertex1] = {}
 
+        # now connect the edges, by adding a vertex2 key to the vertex1 adjanceny map with value of the weight
         self.adjacency[vertex1][vertex2] = weight
+        # if the graph is not directed, you'll also need a self.adjacency[vertex2][vertex1] = weight
 
     def is_vertex(self, vertex):
         return vertex in self.adjacency
