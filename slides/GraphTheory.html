@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Graph Theory</title>
+
+		<meta name="description" content="Graphs">
+		<meta name="author" content="Chip Bell">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../RevealJS/css/reveal.css">
+		<link rel="stylesheet" href="../RevealJS/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../RevealJS/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = '../RevealJS/text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <style>
+            circle {
+                stroke: white;
+                fill: black;
+            }
+            path {
+                stroke: white;
+                stroke-width: 1px;
+            }
+            text {
+                font-size: 6px;
+                stroke-width: 0.5;
+                stroke: white;
+            }
+        </style>
+	</head>
+
+	<body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Graph Theory</h1>
+                </section>
+                <section>
+                    <section>
+                        <h2>Preliminaries</h2>
+                    </section>
+                    <section>
+                        <h3>What is a graph?</h3>
+                        <ul>
+                            <li>A set of vertices $V$, connected by a series of edges $E$</li>
+                            <li>Sometimes edges are "one-way", and we call such a graph <em>directed</em></li>
+                            <li>Sometimes edges have an associated weight, and we call those graphs <em>weighted</em></li>
+                        </ul>
+                        <svg viewBox="0 0 100 100" width="300" height="300">
+                            <!-- edges -->
+                            <path d="M10,10 L90,90" />
+                            <text x="53" y="47">4</text>
+
+                            <path d="M10,10 L10,90" />
+                            <text x="13" y="50">5</text>
+
+                            <path d="M10,90 L90,90" />
+                            <text x="50" y="7">5</text>
+
+                            <path d="M10,10 L90,10" />
+                            <text x="50" y="87">5</text>
+
+                            <!-- Vertices -->
+                            <circle r="5" cx="10" cy="10"/>
+                            <text x="8.5" y="11.5">A</text>
+                            
+                            <circle r="5" cx="90" cy="90"/>
+                            <text x="88.5" y="91.5">B</text>
+                            
+                            <circle r="5" cx="90" cy="10"/>
+                            <text x="88.5" y="11.5">C</text>
+                            
+                            <circle r="5" cx="10" cy="90"/>
+                            <text x="8.5" y="91.5">D</text>
+                        </svg>
+                    </section>
+                    <section>
+                        <p>Can be used to represent lot's of stuff!</p>
+                        <ul>
+                            <li>A series of cities and roads between them (think google maps)</li>
+                            <li>The internet (might want to minimize latency)</li>
+                            <li>A series of task dependencies (Makefiles, build scripts, etc.)</li>
+                            <li>Maybe friendships/social connections. (LinkedIn "second degree" suggestions)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Implementation</h2>
+                    </section>
+                    <section>
+                        <h3>Adjacency List Implementations</h3>
+                        <ul>
+                            <li>Set of lists for each vertex</li>
+                            <li>Each list contains all vertices connected to the vertex associated with that list</li>
+                            <li>
+                            Using math: $G = \{ L_A, L_B, ... \}$, where $A, B, ...$ are the nodes of the graph, and
+                            $L_A = \{ B, D, E, ... \}$ is a list of vertices that $A$ is connected to.
+                            </li>
+                            <li>
+                            So, the fact that $B$ is in $L_A$ indicates that $A$ is connected to $B$ (but necessary the other way around!)
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="GraphTheory/graph.py">Python Implementation</a> (using hash tables)</h3>
+                        <pre><code class="python" data-trim="true">
+class Graph:
+    def __init__(self):
+        # Initial graph has nothing connected
+        self.adjacency = {}
+
+    def connect(self, vertex1, vertex2, weight=None):
+        # If the vertex has never been added to the graph, add it, but with no connects
+        if vertex1 not in self.adjacency:
+            self.adjacency[vertex1] = {}
+
+        # now connect the edges, by adding a vertex2 key to the vertex1 adjanceny map with value of the weight
+        self.adjacency[vertex1][vertex2] = weight
+        # if the graph is not directed, you'll also need a self.adjacency[vertex2][vertex1] = weight
+
+    def is_vertex(self, vertex):
+        return vertex in self.adjacency
+
+    def are_connected(self, vertex1, vertex2):
+        return self.is_vertex(vertex1) and vertex2 in self.adjacency[vertex1]
+
+    def weight(self, vertex1, vertex2):
+        return self.adjacency[vertex1][vertex2]
+
+    def neighbors(self, vertex1):
+        return self.adjacency[vertex1].keys()
+
+# Test Code
+G = Graph()
+
+G.connect('A', 'B')
+G.connect('A', 'C')
+G.connect('B', 'C')
+G.connect('C', 'D')
+
+print(G.are_connected('A', 'B')) # True
+print(G.are_connected('B', 'A')) # False, because the graph is directed!
+print(G.are_connected('A', 'C')) # False, because there is no direct connection
+print(G.neighbors('A')) # ['C', 'B']
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Java Implementation</h3>
+                        <ul>
+                            <li>I'm lazy</li>
+                            <li>It's practically the same thing, but use a <pre>Hashtable&lt;String, Hashtable&lt;String, String&gt;&gt;</pre> to store adjacency</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Graph-related problems</h3>
+                    </section>
+                    <section>
+                        <h3>Is node B reachable from A?</h3>
+                        <ul>
+                            <li>A and B might not directly be neighbors, but they still might be connected indirectly</li>
+                            <li><a href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-First Search</a> and <a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-First Search</a> are great algorithms for this</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>If my graph is a set of task dependencies, what order should I do my tasks</h3>
+                        <ul>
+                            <li>This is referred to as a <a href="https://en.wikipedia.org/wiki/Topological_sorting">Topological Sorting</a></li>
+                            <li>An algorithm is found in the above page</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>What's the shortest way to get from A to B?</h3>
+                        <ul>
+                            <li>Edges have weights, so some edges are more costly to traverse</li>
+                            <li>We want to find the path to take that is least costly (think Google Maps directions)</li>
+                            <li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a> is an appropriate algorithm</li>
+                            <li>
+                                Sometimes, you need all shortest from every node to every other node. This is called "All-Pairs Shortest Path",
+                                and you can use <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd Warshall</a> to solve it.
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>What's the set edges with the lowest weight so that the graph remains connected</h3>
+                        <ul>
+                            <li>This is called the <a href="https://en.wikipedia.org/wiki/Minimum_spanning_tree">Minimum Spanning Tree<a></li>
+                            <li>
+                                <a href="https://en.wikipedia.org/wiki/Prim%27s_algorithm">Prim's Algorithm</a> and 
+                                <a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's Algorithm</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>If my edges were pipes with capacity, what's the most water I could pump from vertex to another</h3>
+                        <ul>
+                            <li>This is referred to as the <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">Maximum Flow Problem</a></li>
+                            <li>
+                                Both <a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm">Ford-Fulkerson</a>
+                                and <a href="https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm">Push-Relabel</a> are algorithms for this
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Example Problems</h2>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/155/pdf">Electric Car Rally</a></h3>
+                        <ul>
+                            <li>Can be modelled as a shortest-path problem, so Dijkstra's is an appropriate choice</li>
+                            <li>The biggest challege is actually building the graph!</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3><a href="http://problems.aprilandchip.com/problems/169/pdf">The 8-Puzzle</a></h3>
+                        <ul>
+                            <li>Essentially asks you to solve the 8-puzzle</li>
+                            <li>You don't have to actually store the entire graph, but at least be able to enumerate all possible moves that you've taken before</li>
+                            <li>To solve this, Breadth-First Search is the most appropriate</li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+		<script src="../RevealJS/lib/js/head.min.js"></script>
+		<script src="../RevealJS/js/reveal.js"></script>
+        <script src="./reveal-init.js"></script>
+    </body>
+</html>
