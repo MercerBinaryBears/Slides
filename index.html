@@ -8,6 +8,14 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style>
+       .notes {
+           display: none;
+       }
+       .notes.show {
+           display: block;
+       }
+    </style>
   </head>
   <body>
     <section class="page-header">
@@ -18,7 +26,7 @@
 
     <section class="main-content">
         <ul>
-            <li>9/14 - Python Intro, Math</li>
+            <li data-date="9-14">9/14 - Python Intro, Math</li>
             <li>9/21 - Python Intro, Strings and Iterables</li>
             <li>9/28 - Computational Geometry</li>
             <li>10/12 - Combinatorics</li>
@@ -27,9 +35,33 @@
             <li>11/2 - Competition Prep</li>
         </ul>
 
+        <p id="9-14" class="notes">
+            Hello
+        </p>
+
       <h3>
           <a href="2016/index.html">Looking for 2016 Slides?</a>
       </h3>
+
+     <script>
+     var forEach = function(nodeList, callback) {
+         for(var i = 0; i < nodeList.length; i++) {
+             callback(nodeList[i], i, nodeList);
+         }
+     };
+     var allNotes = document.querySelectorAll('.notes');
+     var hideNotes = function() {
+         forEach(allNotes, function(node) {
+             node.classList.remove('show');
+         });
+     };
+     forEach(document.querySelectorAll('.main-content li[data-date]'), function(node) {
+        node.addEventListener('click', function() {
+            hideNotes();
+            document.getElementById(node.dataset.date).classList.add('show');
+        });
+     });
+     </script>
 
       <footer class="site-footer">
         <span class="site-footer-owner">
