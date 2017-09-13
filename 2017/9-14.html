@@ -3,31 +3,6 @@
     <head>
         <title>9/14 - Python and Math</title>
         <link rel="stylesheet" type="text/css" href="../stylesheets/2017.css" />
-
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-106206386-1', 'auto');
-          ga('send', 'pageview');
-
-            /**
-            * Function that tracks a click on an outbound link in Analytics.
-            * This function takes a valid URL string as an argument, and uses that URL string
-            * as the event label. Setting the transport method to 'beacon' lets the hit be sent
-            * using 'navigator.sendBeacon' in browser that support it.
-            */
-            var trackOutboundLink = function(url) {
-               ga('send', 'event', 'outbound', 'click', url, {
-                 'transport': 'beacon',
-                 'hitCallback': function(){document.location = href;}
-               });
-            }
-
-        </script>
-
     </head>
     <body>
         <h1>9/14 - Python and Math</h1>
@@ -38,7 +13,7 @@
         <h2>Python</h2>
         <ul>
             <li>
-                <a href="https://docs.python.org/3/tutorial/introduction.html#an-informal-introduction-to-python" onclick="trackOutboundLink('https://docs.python.org/3/tutorial/introduction.html#an-informal-introduction-to-python'); return true;" target="_blank;">
+                <a href="https://docs.python.org/3/tutorial/introduction.html#an-informal-introduction-to-python">
                     Python Tutorial Section 3, skipping 3.1.2, 3.1.3. Read 3.2 though!
                 </a>
             </li>
@@ -83,5 +58,6 @@
         interested) can talk through it a little bit. You'll need to do your own modular arithmetic research, and as a
         hint, learn about sequences of the form <code>a^b mod m</code>.
         </p>
+        <script src="../analytics.js"></script>
     </body>
 </html>
