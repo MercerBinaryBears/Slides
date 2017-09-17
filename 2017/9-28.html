@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>9/28 - Combinatorics</title>
+        <link rel="stylesheet" type="text/css" href="../stylesheets/2017.css" />
+    </head>
+    <body>
+        <h1>Combinatorics</h1>
+        <p>
+        This week, we're focusing on combinatorics, or counting things! This shows up in competitions all the time,
+        and judges (especially Chip), <em>love</em> writing combinatorics problems. Be careful, integer overflows
+        abound here! You'll need to watch all of your intermediate calculations to make sure they don't get too big.
+        </p>
+        <ul>
+            <li>What's a <a href="https://www.youtube.com/watch?v=XqQTXW7XfYA">permutation</a>?</li>
+            <li>What's a <a href="https://www.youtube.com/watch?v=bCxMhncR7PU">combination</a>?</li>
+            <li>
+                The <a href="https://www.youtube.com/watch?v=UTCScjoPymA">Stars and Bars</a> problem (the professor
+                calls it the "Bagel Problem")
+            </li>
+            <li>
+                Read <a href="https://brilliant.org/wiki/recursion-problem-solving/">this article</a> about solving
+                problems recursively. Be sure to work through those examples! Many counting problems are easier to work
+                out if done solved recursively.
+            </li>
+        </ul>
+        <h2>Delving Deeper</h2>
+        <p>
+            <a href="http://problems.aprilandchip.com/problems/230/pdf">Here is a counting problem</a> that's very
+            elegant if written recursively. However, do note that the recursive function that models this problem uses
+            <em>a second variable</em> aside from <code>k</code>.
+        </p>
+        <p>
+            It's also worth noting that this problem is not only recursive, but exhibits <em>Optimal Substructure</em>.
+            That means that it's solution can be computed efficiently from smaller versions of the problem (it's
+            recursive nature). Moreover, it has <em>Overlapping Subproblems</em>, meaning C(k, n) might end up
+            calculating smaller subproblems multiple times. However,
+            <a href="https://en.wikipedia.org/wiki/Dynamic_programming">Dynamic Programming</a> provides relief to this
+            problem (see the first paragraph, and the
+            <a href="https://en.wikipedia.org/wiki/Dynamic_programming#In_computer_programming">"In Computer Programming"
+            </a> section.
+        </p>
+        <script src="../analytics.js"></script>
+    </body>
+</html>
