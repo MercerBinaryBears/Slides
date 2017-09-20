@@ -40,6 +40,14 @@
             <a href="https://en.wikipedia.org/wiki/Dynamic_programming#In_computer_programming">"In Computer Programming"
             </a> section.
         </p>
+        <p>
+            Look at <a href="https://visualgo.net/en/recursion">this visualization</a> on recursion (in particular the
+            Fibonacci numbers for <code>n</code>=5 or 6). Note that <code>F(2)</code> is calculated multiple times in
+            the recursion tree. That's the essense of Dynamic programming: <em>Put previously calculated values in a 
+            table so you don't recopy them</em>. The Python <code>dict</code> or Java <code>HashMap</code> are
+            excellent choices for this, but you may need a <code>tuple</code> Python or custom object as your key in
+            order to map multiple items (sometimes people use multi-dimensional arrays for that reason).
+        </p>
         <script src="../analytics.js"></script>
     </body>
 </html>
