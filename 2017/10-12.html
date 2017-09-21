@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>10/12 - Computational Geometry</title>
+        <link rel="stylesheet" type="text/css" href="../stylesheets/2017.css" />
+    </head>
+    <body>
+        <h1>Computational Geometry</h1>
+        <p>
+            This week, we'll be learning about Computational Geometry, or doing geometric calculations with computers.
+            The are many interesting, difficult, but always useful algorithms in this field, and many of them show up
+            in competitions all the time.
+        </p>
+        <ul>
+            <li>
+                First, let's review <a href="https://www.youtube.com/watch?v=WNuIhXo39_k">Vector Operations</a> which
+                are fundamental, yet crucial.
+            </li>
+            <li>
+                Also, look at this video about the <a href="https://www.youtube.com/watch?v=pJzmiywagfY">Cross Product</a>
+                which is only applicable in 2 and 3D, but is important in both area calculations and the convex hull.
+                Don't forget to marvel at that free-drawn hand...
+            </li>
+            <li>
+                Go ahead and write down (or memorize) 
+                <a href="https://en.wikipedia.org/wiki/Heron%27s_formula#Formulation">Heron's Formula</a> which tends
+                to show up from time to time.
+            </li>
+            <li>
+                More generically, we have the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace Formula</a>,
+                which secretly uses the cross product to achieve it's ends. Only read the Intro and Definition, and
+                then the more complex example to see it worked through by hand.
+            </li>
+            <li>
+                Now, watch <a href="https://www.youtube.com/watch?v=0HZaRu5IupM">this weird video</a> (only the first
+                two minutes) to learn what the Convex Hull is.
+            </li>
+            <li>
+                <a href="https://visualgo.net/en/convexhull">Here is a visualization</a> of the Graham Scan, an
+                algorithm for calculating the convex hull, if you'd like to see it in action.
+            </li>
+        </ul>
+        <h2>Delving Deeper</h2>
+        <ul>
+            <li>
+                The Convex Hull is not terribly difficult to implement. Read
+                <a href="http://www.math.ucsd.edu/~ronspubs/72_10_convex_hull.pdf">Graham's Original Paper</a> which is
+                only a page and a half. Be sure to try and implement it yourself. Our problem set Thursday will present
+                <a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm">a different algorithm</a> for the convex
+                hull, so I recommend you look at both for comparison.
+            </li>
+            <li>
+                One interesting problem that arises is the
+                <a href="https://en.wikipedia.org/wiki/Closest_pair_of_points_problem">Closest Pairs Problem</a>, which
+                is naively <code>O(n&sup2;)</code>, but can be written to be <code>O(n logn)</code> instead. Try writing
+                up a naive implementation alongside a divide and conquer version to compare run time for large sets of
+                points
+            </li>
+            <li>
+                Here's a good <a href="http://problems.aprilandchip.com/problems/159/pdf">ACM problem</a> to puzzle at.
+            </li>
+            <li>
+                See a <a href="https://en.wikipedia.org/wiki/Computational_geometry">full list</a> of computational
+                geometry topics here.
+            </li>
+        </ul>
+        <script src="../analytics.js"></script>
+    </body>
+</html>
