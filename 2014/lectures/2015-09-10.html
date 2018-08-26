@@ -1,0 +1,185 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+    <section>
+        <h1>Front Matter</h1>
+    </section>
+    <section>
+        <h2>Who am I</h2>
+    </section>
+    <section>
+        <h2>Class Format</h2>
+        <ul>
+            <li>No Lectures</li>
+            <li>Self-guided</li>
+            <li>Some Practices, Some Labs</li>
+            <li><a href="http://mercerbinarybears.slack.com">Slack Room</a></li>
+            <li><a href="https://www.codingame.com/home">Coding Game</a> for fun activities</li>
+        </ul>
+    </section>
+    <section>
+        <h2>A Quick Survey</h2>
+        <p>
+            Since I don't know some of everyone, I want to assess what you do and don't know (plus your interests)
+            <br/><a href="https://www.surveymonkey.com/s/5QSVD57">Here's the survey</a>
+        </p>
+    </section>
+    <section>
+        <h2>Links to Exercises</h2>
+        <ul>
+            <li><a href="#/basic-file-redirects">Basic File Redirecting</a></li>
+            <li><a href="#/edge-cases">Edge Cases</a></li>
+        </ul>
+    </section>
+</section>
+<section>
+    <section><h1>Setting Up To Work</h1></section>
+    <section>
+        <h2>Judges test your code like this:</h2>
+        <ul>
+            <li>They download the code you uploaded</li>
+            <li>They compile it (if applicable): <pre><code>javac MySolution.java</code></pre></li>
+            <li>They run your program, using a judging data set: <pre><code>java MySolution < judgingInput.txt > yourOutput.txt</code></pre></li>
+            <li>They then check that your output matches the correct output: <pre><code>diff yourOutput.txt judgingOutput.txt</code></pre></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Your Workflow should therefore be similar</h2>
+        <ul>
+            <li>Write your code in an editor</li>
+            <li>Make sure it compiles</li>
+            <li>Run your program with a testing dataset: <pre><code>python MySolution.py < testInput</code></pre></li>
+            <li>Submit it to the judges</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Writing code</h2>
+        <ul>
+            <li>In Linux, I use Vim.</li>
+            <li>In Windows, Notepad++ and Eclipse do fine as well</li>
+            <li>Regardless, learn keyboard shortcuts to speed up your workflow:
+                <a href="http://michael.peopleofhonoronly.com/vim/">VIM</a>,
+                <a href="http://www.keyxl.com/aaacd5a/43/Notepad-Plus-text-editor-software-keyboard-shortcuts.htm">Notepad++</a>,
+                and <a href="http://eclipse-tools.sourceforge.net/Keyboard_shortcuts_(3.0).pdf">Eclipse</a> have tons of shortcuts.
+            </li>
+            <li>Vim folks, <a href="http://www.vimgolf.com/">here's</a> some exercises</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Compiling Your Code</h2>
+        <ul>
+            <li>If you're coding in Python, nice work! You're already done</li>
+            <li>In Vim, type <code>:!javac %</code> to compile the current file you're editing. You can run any shell command this way</li>
+            <li>Eclipse builds automatically as you code. However, <code>Ctrl + B</code> builds manually if you need to</li>
+            <li>
+            Notepad++ is just an editor. You'll need to open <code>cmd.exe</code> and run it manually. <code>cd</code> to where
+            your code is, and then run <code>c:\program files\java\jdk1.6.0_16\bin\javac.exe yourfile.java</code>. You'll probably need to
+            tweak that directory to match where java's located, but that should get you started
+        </ul>
+    </section>
+    <section>
+        <h2>Running Your Code</h2>
+        <ul>
+            <li>Typing input into your program by hand is frustrating and error-prone. Use file redirection if possible!</li>
+            <li>Regardless of OS, the basic formula is this:
+            <ul>
+                <li><code>cd</code> into the directory where your code lives</li>
+                <li>Run <code>java MyClass &lt; inputfile.txt</code> (or <code>python myfile.py &lt; inputfile.txt</code>
+                <li>You may have to use the full path to the runtime if it's not in your path (generally a Windows issue)</li>
+                <li>For Java: <code>c:\program files\java\jdk1.6.0_16\bin\java.exe</code> should get you started</li>
+                <li>For Python: <code>c:\Python33\python.exe</code> might work</li>
+            </ul>
+        </ul>
+    </section>
+    <section id="basic-file-redirects">
+        <h2>Exercise (Basic File Redirects)</h2>
+        <p>
+            Write a program that reads in integers and doubles them. The input file would look like this:
+<pre>3
+1
+2
+3</pre>
+            The first line is the number of cases \(n\), and the next \(n\) lines will each have a positive integer on them.
+            Your output for the above case should look like this:
+<pre>2
+4
+6</pre>
+        </p>
+        <p>Look below, there's a little more &#11015;</p>
+    </section>
+    <section>
+        <h2>Exercise (cont.)</h2>
+        <ul>
+            <li>Make sure you put your sample input <i>in a file</i>, rather than typing it in</li>
+            <li>Use a file redirect (<code>java MyProb &lt; input.txt</code>) to put data into your program</li>
+            <li>Then verify that you got it right. Try larger/different cases using your test input file</li>
+            <li>Try this case:
+<pre>3
+1
+2
+3
+4</pre>
+                what should your program output? Hint: It should only be three lines!</li>
+        </ul>
+    </section>
+</section>
+<section>
+    <section>
+        <h1>Debugging Problems</h1>
+    </section>
+    <section>
+        <h2>Types of Incorrect Solutions</h2>
+        <ul>
+            <li><i>Compile error</i> - Your code didn't compile</li>
+            <li><i>Presentation Error</i> - Your output looked right, but there were some formatting issues</li>
+            <li><i>Runtime Error</i> - An error occurred while your program was running</li>
+            <li><i>Time Limit Exceeded</i> - Your program took too long to finish</li>
+            <li><i>Wrong Answer</i> - You got the wrong answer...</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Mistakes You Shouldn't Make</h2>
+        <ul>
+            <li>Your code should <b>always compile</b>.</li>
+            <li>Your code should <b>never have presentation errors</b>. </li>
+            <li>These mistakes are generally caused by not paying attention, and not real programming error</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Runtime Errors</h2>
+        <ul>
+            <li>Generally caused by <b>array indexing issues</b> (but not always).</li>
+            <li>Look for where you might be indexing an array and see if there's a way it could go too high</li>
+            <li>Try harder cases and see if you can <b>replicate the issue</b></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Time Limit Exceeded</h2>
+        <ul>
+            <li>This generally means <b>your algorithm is inefficient</b>. Rethink it a little.</li>
+            <li>It could also means there's <b>an infinite loop somewhere</b>. Make sure there's not weird case like that</li>
+            <li>Try harder cases and see if you can <b>replicate the issue</b>.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Wrong Answer</h2>
+        <ul>
+            <li>It's not very descriptive, but it looks like <b>your algorithm is incorrect</b>.</li>
+            <li>Try different cases, especially ones you know the answer to and try to <b>replicate the issue</b></li>
+            <li>This is <b>the most frustrating part</b>. Really think about the problem. Think about edge cases, large cases, small cases, everything!</li>
+        </ul>
+    </section>
+    <section id="edge-cases">
+        <h2>Exercise (Edge Cases)</h2>  
+        <p>In the previous problem, I didn't specify limits on the numbers. In general, a problem will specify limits and those limits are very important.
+        For instance, let's say for the first problem the positive integer could be up to 100. Can your problem handle that case? What if the number were 2147483647?
+        What will your solution say? What <b>should it say</b>? What about 2147483648?</p>
+        <p>Fix your code to pass those cases.</p>
+        <p>Next, why did I choose those particular numbers? I assure you that judges will!</p>
+    </section>
+</section>
+<section>
+    <h1>Problem Set</h1>
+</section>
+{% endblock %}

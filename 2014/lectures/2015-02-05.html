@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+    <h1>String Matching</h1>
+</section>
+<section>
+    <p>Given a word $W$ determine if $W$ occurs in a main text string $S$</p>
+</section>
+<section>
+    <p>What's the first, intuitive way that you would solve this problem?</p>
+</section>
+<section>
+    <p>Perhaps something like this?</p>
+<pre><code class="java">public boolean stringContains(String word, String mainText) {
+    // Untested, beware...
+    for(int i = 0; i &lt; mainText.length() - word.length(); i++) {
+        boolean allCharactersMatch = true;
+        for(int j = 0; j &lt; word.length(); j++) {
+            if(mainText.charAt(i + j) != word.charAt(j)) {
+                allCharactersMatch = false;
+                break; // break out of inner loop. j = word.length(); works too.
+            }
+        }
+
+        if(allCharactersMatch) {
+            return true;
+        }
+    }
+
+    return false;
+}</code></pre>
+</section>
+<section>
+    <p>
+    What's this doing?
+    </p>
+</section>
+<section>
+    <section>
+        <p>This tries to "align" $W$ (called word here) by scooting it along $S$ (called mainText here) and checking if all the
+        characters match. For instance, let $W = cat$ and $S = cacat$. The first step of the outer loop would look something like
+        <pre>cacat
+cat</pre>
+        <p>Which would not match</p>
+    </section>
+    <section>
+        <p>The second loop would be</p>
+        <pre>cacat
+ cat</pre>
+        <p>(No match)</p>
+    </section>
+    <section>
+        <p>And the third</p>
+        <pre>cacat
+  cat</pre>
+        <p>Which would match</p>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>This runs in $O(n^2)$ time</h3>
+    </section>
+    <section>
+        <h4>Quick review of $O$ notation</h4>
+    </section>
+    <section>
+        <ul>
+            <li>
+                $O(n^2)$ simply means that for a given algorithm given input of size $n$, it takes
+                <i>on the order</i> of $n^2$ time to run the algorithm.
+            </li>
+            <li>
+                So, if it runs in 2 seconds for $n=1$, for $n=3$ it'll run in roughly 6 seconds
+                (the input increased by 2, so the time increased by $2^2$).
+            </li>
+            <li>
+                You can spot this by seeing the doubly nested for loops.
+            </li>
+        </p>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>Is this acceptable?</h3>
+    </section>
+    <section>
+        <p>For small cases, sure! If my strings are of length 20, I'll have to do 400 iterations. Not a big deal</p>
+    </section>
+    <section>
+        <p>What if you're trying to match a sequence of DNA to another (which is pretty common)?</p>
+        <p>
+            Let's consider the HIV virus, which has 9,749 base pairs. Now, our loop has to perform 95043001 iterations.
+            This <i>might</i> be okay, but we can see this breaking down, when the cases get larger
+        </p>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>Is there a faster way?</h3>
+    </section>
+    <section>
+        <p>We can actually do this in linear time: $O(n)$.
+    </section>
+    <section>
+    <p>
+    Check out <a href="http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)">Knuth-Morris-Pratt Algorithm</a>.
+    </p>
+        <p>
+            Basic Idea: The naive solution jumps back to the beginning and starts over if there's a mismatch. KMP
+            instead builds a table up-front (in linear-time) that tells your algorithm WHERE in the mainText to jump back to.
+            See <a href="http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm#.22Partial_match.22_table_.28also_known_as_.22failure_function.22.29">here</a>.
+            </p>
+    </section>
+    <section>
+        <p>For instance let's say your performing the following match in our naive algorithm:</p>
+        <pre>cacacab
+cacat</pre>
+        <p>
+        On the mismatch on the t and c, the naive algorithm would slide the small word over, one character and start
+        over. KMP would instead move the string over enough characters to skip already known matches. So, the next
+        position would be
+        </p>
+        <pre>cacacab
+  cacab</pre>
+        <p>(Notice we skipped ahead by 2)</p>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>In Practice do you code this, or is it built-in?</h3>
+    </section>
+    <section>
+        <h5>Java</h5>
+        <p>
+            The String class' implementation of
+            <a href="http://hg.openjdk.java.net/jdk7u/jdk7u6/jdk/file/8c2c5d63a17e/src/share/classes/java/lang/String.java#l1715">indexOf</a>
+            uses a modified form of the naive algorithm, so this would break down quickly.
+        </p>
+    </section>
+    <section>
+        <p>
+            Python, however kicks ass and has it built-in:
+<pre><code class="python">dna = 'CGATGATTAGACGACGATGAGATATTCGATCG'
+gene = 'CGATGTGT'
+if gene in dna:
+    print('Win')
+else:
+    print('Still win, because Python')</code></pre>
+        </p>
+    </section>
+</section>
+<section>
+    <p>Lesson Learned?</p>
+    <ul>
+        <li>Find an implementation in your language of choice OR</li>
+        <li>Use a language that has it built-in</li>
+        <li>Learn how to spot places where the string match will break down. The cases are easy to spot</li>
+    </ul>
+</section>
+{% endblock %}

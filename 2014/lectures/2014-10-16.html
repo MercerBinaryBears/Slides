@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+<h1>Knapsack Problem</h1>
+</section>
+<section>
+	<section>
+	<h2>Problem Description</h2>
+	</section>
+	<section>
+	<p>
+	You're a thief and you break into a house. Your bag (knapsack) can only carry so much weight. Knowing the weight and
+	value of every item in the house, what is the maximum value you can take back with you, without exceeding the carrying
+	capacity of your bag?
+	</p>
+	</section>
+	<section>
+	<p>
+	Given a set of $n$ values and weights: $v_1, v_2, \ldots$, and $w_1, w_2, \ldots$ and a maximal carrying capacity $W$,
+	what's the maximum $v_{k_1} + v_{k_2} + \ldots$ such that $w_{k_1} + w_{k_2} + \ldots \le W$. In this case,
+	$k_1, k_2, \ldots$ are the indices of the items we chose.
+	</p>
+	</section>
+</section>
+<section>
+	<section>
+	<h2>Naive Solution</h2>
+	</section>
+	<section>
+	<p>
+		The naive solution in this case is to simply choose all possible combinations and then pick the maximal one
+		satisfying the constraint.
+	</p>
+	</section>
+	<section>
+		<p>
+		This is bad. There are $2^n$ different item combinations to pick from, so the run time would be exponential, which
+		certainly won't fly in a contest. There must be a better way.
+	</section>
+</section>
+<section>
+	<section>
+	<h2>How to be more clever</h2>
+	</section>
+	<section>
+		<h3>Can we be greedy?</h3>
+		<p>At first glance, this may actually work. Perhaps we have a knapsack with max weight 6, two items of weight 1 with
+		value 3, and a single item with weight 4 but value 5. A greedy algorithm might take the heavy item of weight 4, and
+		fit no more items, giving a total value of 5. However, the optimal is clearly 6 here. So greedy doesn't really work.
+		</p>
+	</section>
+	<section>
+		<h3>Subproblems</h3>
+		<p>
+		You may not notice this at first, but whenever you choose an item you've reduced the problem. By putting an item of
+		weight $w$ into the bag, you've reduced your knapsack to a smaller one ($w$ less to be precise). Furthermore, you've
+		now got one less item to pick from.
+		</p>
+	</section>
+</section>
+<section>
+	<section>
+	<h2>Dynamic Programming</h2>
+	</section>
+	<section>
+		<p>
+		Dynamic programming is a method of solving problems by taking advantage of this <i>overlapping subproblems</i> (the
+		subproblem observation we just made) and <i>optimal substructure</i> (the optimal value relies on smaller
+		subproblems as a recurrence. We'll find that formula in a second).
+	</section>
+	<section>
+		<h3>What's the recurrence?</h3>
+		<p>First, let's define a function: Let $M(i, w)$ be the maximum value that can be attained with weight less than or equal
+		to $w$ using only up to the first $i$ items.</p>
+	</section>
+	<section>
+		<h4>The First case</h4>
+		<p>
+		If the current item at $i$ is too heavy to fit in the bag, we simply don't put it in the bag. As a formula:
+		$M(i, w) = M(i - 1, w)$ if $w_i \gt w$.
+	</section>
+	<section>
+		<h4>The Second case</h4>
+		<p>
+		Otherwise, take the better of taking item $i$ or not:
+		$M(i, w) = \max{ \left( M(i - 1, w), M(i - 1, w - w_i) + v_i \right) }$
+		You might want to study that second term...
+		</p>
+	</section>
+	<section>
+		<h3>The final solution</h3>
+		<p>
+		Now, we simply calculate $M(n, W)$ to get our final result. We can do this simply via a nested for-loop,
+		or via recursion.
+		</p>
+	</section>
+</section>
+{% endblock %}

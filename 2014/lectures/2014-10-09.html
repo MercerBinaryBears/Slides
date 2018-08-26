@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+<h2>Computational Geometry</h2>
+</section>
+<section>
+<p>
+Using computers to perform geometric computations
+</p>
+<ul>
+	<li>Intersection of Line Segments</li>
+	<li>Convex Hull</li>
+	<li>Area Of Polygons</li>
+	<li>Triangulation</li>
+	<li>Point Containment</li>
+</ul>
+</section>
+<section>
+<h2>How To Store a Point</h2>
+<p>
+I highly advise you create a <code>Point</code> class to represent a point, with perhaps an $x$ and $y$ value that are publicly
+accessible. Its not "good class design" but you'll be coding in a hurry.
+</p>
+</section>
+<section>
+<h2>Define Some Operations</h2>
+<ul>
+	<li>Addition, Subtraction, and Scaling</li>
+	<li>Magnitude: $\|p\| = \sqrt{x^2 + y^2}$ and implicitly distance between points: <code>P1.sub(P2).magnitude();</code></li>
+</ul>
+</section>
+<section>
+<section><h2>Two Important Operations (2D & 3D)</h2></section>
+<section>
+	<h2>Dot Product</h2>
+	<p>
+		The dot product $p_1 \cdot p_2$ is defined as $x_1x_2 + y_1y_2$. Fun facts:
+	</p>
+	<ul>
+		<li>$p \cdot p = \|p\|^2$</li>
+		<li>
+			If $p_1 \cdot p_2 = 0$, then $p_1$ and $p_2$ are said to be orthogonal, which means they're at right angles with each other.
+			This actually extends to vectors of any dimension and even to functions (a function is <i>orthogonal</i> to another)
+		</li>
+		<li>$p_1 \cdot p_2 = \|p_1\|\|p_2\| cos(\theta)$, where $\theta$ is the angle between the two vectors.
+	</ul>
+</section>
+<section>
+	<h2>Cross Product</h2>
+	<p>
+	For 2D, the cross product is defined as $p_1 \times p_2 = x_1y_2 - x_2y_1$. In 3D it's trickier,
+	but I like <a href="http://en.wikipedia.org/wiki/Cross_product#Matrix_notation">this formula</a>.
+	</p>
+	<p>
+	Cross products really only work in 3D, but we can fake 2D by pretending that $z=0$ for our vectors. In that case,
+	the cross product returns a vector sticking out in the $z$ direction. In most 2D applications, we only care about the
+	<i>magnitude</i> of the result anyways.
+	</p>
+</section>
+<section>
+	<h2>Cross Product (cont.)</h2>
+	<p>Considering only 2D,</p>
+	<ul>
+		<li>$p_1 \times p_2$ in 2D gives the volume of the parallelogram with side from the origin to $p_1$ and $p_2$.</li>
+		<li>As a consequence $\frac{1}{2}$ that will give the triangle area (<i>very</i> handy)</li>
+		<li>
+		$p_1 \times p_2 = \|p_1\|\|p_2\|sin(\theta)\mathbf{n}$ where $\theta$ is the angle between the vectors, and $\mathbf{n}$ is
+		the normal vector to the two (the direction of the cross product). Using this handy notation for calculating angle, we can
+		always determine if two points are collinear ($\theta = 0$) because the cross product is 0.
+		</li>
+	</ul>
+</section>
+</section>
+<section>
+<section>
+<h2>Line Segments</h2>
+<p>
+Essentially, it's a continuum of points between two points. A nice way to write this is
+$\mathscr{l}(t) = p_0 + t(p_1 - p_0)$, where $0 \le t \le 1$. Worth noting, if $t$ is outside the
+range, the function is not really defined (unless you want it to be).
+</p>
+<p>What sort of operations might we care about?</p>
+</section>
+<section>
+<h3>Intersection with another line segment?</h3>
+<p>
+Essentially set the two lines equal to each other, and fiddle with the algebra:
+</p>
+<p>
+$\mathscr{l_1}(s) = p_0 + s(p_1 - p_0) = v_0 + t(v_1 - v_0) = \mathscr{l_2}(t)$: 
+</p>
+<p>
+We've got two free variables $s$ and $t$. But, if we cross-product both sides with $v_1 - v_0$
+or $p_1 - p_0$, either the $s$ or $t$ term will cancel, and we'll be left with only 1 variable,
+which we can then solve for.
+</p>
+</section>
+<section>
+<h3>Intersection with other shapes?</h3>
+<p>
+Same approach, parameterize and set equal. See if you can cancel something out. Make sure to try dot
+or cross to cancel out a term.
+</p>
+</section>
+</section>
+{% endblock %}

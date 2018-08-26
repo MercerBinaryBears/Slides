@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+	<h2>Programming Team Lectures</h2>
+	<p>
+		Hello! Here are our past lectures:
+	</p>
+	<ul>
+	{% for lecture in lectures %}
+		<li>
+		<a href='/?lecture={{ lecture.query_param }}'>{{ lecture.pretty_date }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+<h2>Last Week's Problems</h2>
+<p>Only looking at two, since those we're the least solved</p>
+<ul>
+	<li><a href="#/pyramid">Pyramid Numbers</a></li>
+	<li><a href="#/lottery">Lottery</a></li>
+</ul>
+</section>
+<section id="pyramid">
+	<section>
+		<h2>Pyramid</h2>
+		<p>
+		In this problem you essentially needed to find a quick way to calculate elements of this sequence:
+		</p>
+		<p>
+			$P(n) = \sum_{k=1}^{n} T(k)$, or even more clean:
+		</p>
+		<br/>
+		<p>
+		$P(n) = \sum_{k=1}^{n} \sum_{j=1}^{k} j$
+		</p>
+	</section>
+	<section>
+		<h2>The Issues We Hit</h2>
+		<p>A reiteration</p>
+		<ul>
+			<li>The naive implementation would be $O(n^2)$.</li>
+			<li>Using plain integers would be bad since they would blow up. Sorry again, C++ folks. I should have bounded a little better</li>
+		</ul>
+	</section>
+	<section>
+		<h2>How to simplify?</h2>
+	</section>
+	<section>
+		<h4>Let's Compare $P(n)$ to $T(n)$</h4>
+		<table class="reveal">
+			<tr>
+				<th>$n$</th>
+				<th>$T(n)$</th>
+				<th>$P(n)$</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>6</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>10</td>
+				<td>20</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+	<h4>Let's throw in $\frac{P(n)}{T(n)}$</h4>
+		<style>tr { margin-bottom: 2em; }</style>
+		<table class="reveal">
+			<tr>
+				<th>$n$</th>
+				<th>$T(n)$</th>
+				<th>$P(n)$</th>
+				<th>$\frac{P(n)}{T(n)}$</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>$\frac{4}{3}$</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>6</td>
+				<td>10</td>
+				<td>$\frac{5}{3}$</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>10</td>
+				<td>20</td>
+				<td>2</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<h3>And there's the pattern</h3>
+		<p>
+		Now we know $\frac{P(n)}{T(n)} = T(n)\frac{n+2}{3}$ and combine that
+		back into the formula for $T(n)$:
+		</p>
+		<br/>
+		<p>
+		$P(n) = \frac{n(n+1)(n+2)}{6}$
+		</p>
+	</section>
+</section>
+<section id="lottery">
+	<section>
+		<h2>Lottery</h2>
+		<p>
+			I like counting problems (now at least), but I first saw this one in a 
+			contest, it was daunting. However, with these types you just need to break
+			it into a recursive formula. That involves two parts:
+		</p>
+		<ul>
+			<li>Define a base case for the recursion. What's the simplest form of this
+			problem you can think of?
+			</li>
+			<li>Define the recurrence relationship for this problem, in a simple way that
+			breaks the problem down into <emph>a similar subproblem</emph>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>As a Formula</h2>
+		<p>
+		Let's define a function for our problem. What are our parameters?
+		</p>
+		<ul>
+			<li>$m$ The range of numbers we support</li>
+			<li>$n$ The number of numbers in our list</li>
+			<li>$k$ The lowest number we can start at. For the problem this is 1. When we break into subproblems we'll tweak it.</li>
+		</ul>
+		<p>
+			Now, our function $F(m, n, k)$ is the number of lottery lists of length 
+			$n$ using the numbers $k$ up to $m$.
+		</p>
+	</section>
+	<section>
+		<h2>The Base Case</h2>
+		<p>The best way do this is to use small numbers in places, particularly 0's and 1's. Here's a couple of examples</p>
+		<ul>
+			<li>How many lucky lists are there if the total list length is 0?</li>
+			<li>Is there a lucky list if our range of numbers is up to $m$ and $k \gt m$?</li>
+			<li>Is there a lucky list if the list length is $n = 1$ and our range is up to $m$ and our index is $k \le m$?</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Reformulate Our Base Case</h2>
+		<p>So our base cases can be rewritten:</p>
+		<ul>
+			<li>$F(m, 0, k) = 0$</li>
+			<li>$F(m, n, k) = 0, k \gt m$</li>
+			<li>$F(m, 1, k) = 1, k \le m$</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Formulating recursively</h2>
+		<p>If we're in the function, at some $m, n, k$, and not at a base case, how
+		do we determine how many lotto's for this case are there?</p>
+		<p>We need to find a way to make this current case dependent on others</p>
+	</section>
+	<section>
+		<p>If we're at $(m, n, k)$ it means that we're putting $k$ into the lucky
+		lottery list. So, if $k$ is in the lucky lottery list, what could be the next value?</p>
+		<ul>
+			<li>$k+1$? No.</li>
+			<li>$k+2$? No.</li>
+			<li>$2k$? Yes, since that's how the list grows!</li>
+			<li>$2k+1$? Yes again. However, we need to make sure that we keep that 
+			value within bounds of $m$</li>
+		</ul>
+	</section>
+	<section>
+	<p>
+		So, we can write $F(m, n, k) = F(m, n-1, 2k) + F(m, n-1, 2k + 1) + \dots$
+	</p>
+	<p>
+		Note the $n - 1$ since we're using $k$ as one of the list elements. That
+		means we'll have $n - 1$ other elements to fill.
+	</p>
+	</section>
+	<section>
+		<h2>One Last Step</h2>
+		<p>
+		Our function is done, but we're going to optimize it a little. There could
+		be overlap in our recursive calls, where we might call the same $F(m, n, k)$
+		multiple times.
+		</p>
+		<p>
+		Depending on how bad the branching is, this could really slow down the recursion. So we need to never calculate something twice!
+		</p>
+		</section>
+		<section>
+			<h2>Enter Memoization</h2>
+			<p>
+			Memoization is essentially storing a table of values of a function
+			you've already calculated. Before calculating anything, you see if you've
+			ever calculated the value before.
+			</p>
+			<p>
+			If you have, just return the table's value
+			</p>
+			<p>
+			If you haven't, calculate it and put in the table, THEN return it.
+			</p>
+			<p>
+			This effectively converts a potentially expontential time algorithm
+			into linear.
+			</p>
+		</section>
+</section>
+{% endblock %}

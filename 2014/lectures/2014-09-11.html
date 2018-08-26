@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+<h2>Intro Lecture</h2>
+<ul>
+	<li><a href="#/intro">Some Introdutions</a></li>
+	<li><a href="#/utilities">Utilities</a></li>
+	<li><a href="#/strategies">Strategies</a></li>
+	<li><a href="#/examples">Examples</a></li>
+</ul>
+</section>
+<section id="intro">
+<h6>Some Introductions</h6>
+<p>
+		I'm Chip Bell, Veteran programming team guy, Mercer grad.	
+		I'm on Twitter at <a href="https://twitter.com/chipbell4">@chipbell4</a>
+		and Google plus at <a href="https://plus.google.com/u/0/104396656217221720994/posts">+ChipBell</a>
+</p>
+<p>
+We have a <a href="https://plus.google.com/communities/102317662374832568266">group on Google+</a>.
+Please join! I post solutions, tips, and more.
+</p>
+</section>
+<section>
+<h6>More Introducing</h6>
+<p>
+	This "class" is essentially competitive programming. You're given a problem set,
+	asked to solve each problem by writing a program to generate a given output from
+	a given input. We the judges run your code with separate input and see if your
+	algorithm is correct and efficient.
+</p>
+<p>
+	<emph>It's as easy as that &trade;</emph>.
+</p>
+</section>
+<section id="utilities">
+<h6>Utilities</h6>
+<ul>
+	<li>
+	<a href="http://emiraga.wikispaces.com/file/view/Programming+Challenges+-+The+Programming+Contest+Training+Manual.pdf">Programming Challenges</a>
+	- more or less the text book I'll teach from.
+	</li>
+	<li>
+	<a href="http://www.amazon.com/Introduction-Algorithms-Edition-Thomas-Cormen/dp/0262033844">Introduction to Algorithms</a>
+	- A book I recommend you buy. It was actually a required text book for me in grad school. <emph>Lot's</emph> of good material here.
+	</li>
+	<li>
+		The <a href="https://docs.python.org/3/">Python docs</a> and
+		<a href="http://docs.oracle.com/javase/7/docs/api/">Java Docs</a>.
+		Ideally you shouldn't really have to reference these much if at all (I'll explain later)
+	</li>
+	<li>
+		<a href="https://projecteuler.net/">Project Euler</a>
+		- Great practice problems, and they're generally pretty fun.
+	</li>
+	<li>
+		<a href="http://www.codechef.com/">Code Chef</a>
+		- Another one like Project Euler. There's lot's out there, so just explore.
+	</li>
+</ul>
+</section>
+<section id="strategies">
+	<section>
+		<h6>Strategies</h6>
+		<p>There's lot's of different things to think about here. But I've listed just a few that I could think of. (Press the down arrow).</p>
+	</section>
+	<section><h6>Do the easy problems first</h6></section>
+	<section id="teammates"><h6>Leverage Your teammates</h6></section>
+	<section>
+		<h6>Code on paper</h6>
+		<p>Don't hog the computer thinking, while someone could be coding</p>
+	</section>
+	<section>
+		<h6>Know your language</h6>
+		<p>Don't waste time searching the docs frantically for "how to sort a list", etc. You should spend your time either thinking about the algorithm or coding it.</p>
+	</section>
+	<section>
+		<h6>Don't code your initial reaction</h6>
+		<p>
+			Sometimes problems are more complex (or simple) than you think. Think about the large cases
+			and if your algorithm can handle it. Sometimes talking with a teammate can find these
+			fatal flaws (see <a href="#/teammates">here</a>)</p>
+	</section>
+	<section>
+		<h6>Know your algorithms</h6>
+		<p>
+		Many problems are textbook implementations of famous algorithms. 
+		Others are tweaks on famous algorithms. Learn how to recognize this and run with it.
+		</p>
+	</section>
+	<section>
+		<h6>Know how to <emph>bring</emph> your algorithms</h6>
+		<p>
+			<emph>Never</emph> code a common algorithm in a competition. You're prone 
+			to bugs and good old fashioned coder frustration. Instead bring well-tested
+			implementations of common data structures and algorithms (e.g. Graphs,
+			BFS, Dijkstra's, etc.) on paper and copy them by hand into the computer.
+		</p>
+	</section>
+</section>
+<section id="examples">
+	<section>
+	<h6>Examples</h6>
+	<p>Here's an example to illustrate the point...</p>
+	</section>
+	<section>
+	<h6>Triangle Numbers</h6>
+	<p>
+	Triangle numbers are defined as $T(n) = \sum_{k=1}^{N} k$. If I give an $n$, calculate
+	$T(n)$.
+	</p>
+	<p>
+	<img src="http://www.browniebites.net/photos/whatdinner/sweets/challenge-accepted-rage-comic.jpg" width="200px"/>
+	</p>
+	</section>
+	<section>
+	<pre><code class="java">int N = 10;
+int total = 0;
+for(int i = 1; i <= N; i++) {
+	total += i;
+}
+System.out.println(total);
+	</code></pre> 
+	</section>
+	<section>
+		<h6>Easy right?</h6>
+		<ul>
+			<li>What if $n = 10^2$?</li>
+			<li>What if $n = 10^4$?</li>
+			<li>What if $n = 10^8$?</li>
+			<li>What if... You get the idea.</li>
+		</ul>
+		<p>What sort of things should we be considering?</p>
+	</section>
+	<section>
+	<ol>
+		<li>Truncation: When will we run out of space in a 32-bit integer</li>
+		<li>At what point will our algorithm be too slow (our current one is $O(n)$?</li>
+	</ol>
+	</section>
+	<section>
+		<h6>How can we do better?</h6>
+		<ul>
+			<li>Represent integers with more space:
+				<code>unsigned long</code> or perhaps <code>BigInteger</code>.
+				Python folks, carry on.
+			</li>
+			<li>
+				Find a closed form for this thing and get rid of the summation.
+				Anyone know the formula (and the story about Gauss?)
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h6>This is the formula</h6>
+		<p>
+			$T(n) = \frac{n (n+1) }{2}$
+		</p>
+	</section>
+</section>
+{% endblock %}
